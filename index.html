@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FinTech Guide to Orlando Theme Parks</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Every ride and show at Magic Kingdom, EPCOT, and the three Universal parks, rated by Sean and Kassie.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F7FC; --card:#FFFFFF; --ink:#121A33; --muted:#586082; --line:#DCE2F0; --soft:#ECF0F9;
+  --nav:#FFFFFF; --track:#E3E8F4;
+  --sean-bg:#FFF2CC; --sean-ink:#4A3500; --sean-line:#E7B83C; --sean-name:#8A5A00;
+  --kas-bg:#FCE3F2; --kas-ink:#561644; --kas-line:#D86BB5; --kas-name:#9A2C7E;
+  --mk:#2B59E0; --epcot:#0A8A8E; --usf:#D8402F; --ioa:#37873B; --epic:#7B43D6;
+  --accent:#2B59E0;
+  --serif:'Newsreader',Georgia,'Times New Roman',serif;
+  --sans:'Instrument Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --display:'Bricolage Grotesque','Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1325; --card:#151D38; --ink:#EDF0FA; --muted:#A3ACCB; --line:#27315A; --soft:#1B2547;
+    --nav:#111A33; --track:#222C52;
+    --sean-bg:#3A2E0C; --sean-ink:#FFE9A8; --sean-line:#9A7A1E; --sean-name:#F2C94C;
+    --kas-bg:#3A1631; --kas-ink:#FFD3EF; --kas-line:#A84A8C; --kas-name:#FF9AD8;
+    --mk:#7C9BFF; --epcot:#4FD1D3; --usf:#FF8A7A; --ioa:#7FD783; --epic:#B792FF;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1325; --card:#151D38; --ink:#EDF0FA; --muted:#A3ACCB; --line:#27315A; --soft:#1B2547;
+  --nav:#111A33; --track:#222C52;
+  --sean-bg:#3A2E0C; --sean-ink:#FFE9A8; --sean-line:#9A7A1E; --sean-name:#F2C94C;
+  --kas-bg:#3A1631; --kas-ink:#FFD3EF; --kas-line:#A84A8C; --kas-name:#FF9AD8;
+  --mk:#7C9BFF; --epcot:#4FD1D3; --usf:#FF8A7A; --ioa:#7FD783; --epic:#B792FF;
+}
+*,*::before,*::after{box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nav)}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.1;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+.wrap.wide{max-width:1100px}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--nav);border-bottom:1px solid var(--line)}
+.bar .wrap{max-width:1180px;display:flex;align-items:center;gap:12px;padding-top:10px;padding-bottom:10px}
+.brand{font-family:var(--display);font-weight:800;font-size:17px;white-space:nowrap;text-decoration:none}
+.tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex:1;padding:2px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{border:1px solid transparent;background:transparent;border-radius:999px;padding:7px 11px;font-weight:600;font-size:14px;cursor:pointer;white-space:nowrap;text-decoration:none;color:var(--muted)}
+.tab:hover{background:var(--soft)}
+.tab[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.tab .dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:baseline;background:var(--c,var(--muted))}
+.tab[aria-current="page"] .dot{box-shadow:0 0 0 2px var(--paper)}
+.grp{font-size:12.5px;color:var(--muted);font-weight:600;margin:0 2px 0 10px;white-space:nowrap;align-self:center}
+.here,.menubtn{display:none}
+.menubtn{border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:7px 14px;font-weight:600;cursor:pointer;white-space:nowrap}
+.menupanel{position:absolute;left:0;right:0;top:100%;background:var(--nav);border-bottom:1px solid var(--line);box-shadow:0 12px 24px rgba(0,0,0,.12);padding:6px 20px 16px;max-height:calc(100vh - 70px);overflow:auto}
+.menupanel[hidden]{display:none}
+.menupanel h4{font-family:var(--sans);font-size:13px;color:var(--muted);font-weight:600;margin:14px 0 6px}
+.menupanel a{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:16px}
+.menupanel a[aria-current="page"]{background:var(--soft)}
+.menupanel .dot{width:11px;height:11px;border-radius:50%;background:var(--c)}
+@media(max-width:759px){.brand{display:none}.tabs{display:none}.here{display:block;flex:1;font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}.menubtn{display:block}}
+.mode{border:1px solid var(--line);background:var(--card);border-radius:999px;width:36px;height:36px;cursor:pointer;flex:none;font-size:16px;line-height:1}
+
+/* hero */
+.hero{padding:52px 0 30px}
+.hero h1{font-size:clamp(38px,7.2vw,72px);font-weight:800;max-width:15ch}
+.hero .sub{font-size:19px;color:var(--ink);max-width:54ch;margin-top:18px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.cta{display:inline-block;background:var(--c);color:#fff;text-decoration:none;font-family:var(--display);font-weight:700;font-size:18px;border-radius:12px;padding:14px 22px}
+:root[data-theme="dark"] .cta,:root:not([data-theme="light"]) .cta{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .cta{color:#fff}}
+.cta:hover{filter:brightness(1.08)}
+.uni-note{margin-top:14px;color:var(--muted);font-size:15.5px;max-width:58ch}
+.uni-note a{font-weight:600}
+.legend{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 22px}
+.legend h3{font-size:17px;margin-bottom:10px}
+.legend small{color:var(--muted);display:block;margin-top:8px;font-size:13.5px;line-height:1.45}
+.flame-row{display:flex;gap:14px;align-items:baseline;font-size:15px;margin:7px 0}
+.flame-row .fl{flex:none;width:112px;white-space:nowrap}
+.section{padding:30px 0}
+.section>h2,.wrap>h2{font-size:clamp(26px,4vw,36px);margin-bottom:16px;font-weight:700}
+.note-list{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+.note-list li{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--ink);border-radius:12px;padding:14px 16px}
+.note-list li.warn{border-left-color:#E0A100}
+.note-list b{font-family:var(--display);font-weight:700}
+.note-list ul{margin:10px 0 0;padding-left:0;list-style:none;display:grid;gap:8px}
+.note-list li li{border:0;border-left:3px solid var(--line);border-radius:0;padding:2px 0 2px 12px;background:transparent}
+.parkgrid{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.parkgrid.two{grid-template-columns:1fr 1fr}.parkgrid.three{grid-template-columns:repeat(3,1fr)}}
+.lede{color:var(--muted);margin:-6px 0 16px;max-width:60ch}
+.pcard{position:relative;display:block;background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:6px 6px 18px 18px;padding:20px 20px 18px;text-decoration:none}
+.pcard:hover{border-color:var(--c)}
+.pcard h3{font-size:26px;color:var(--ink)}
+.pcard p{margin-top:10px;color:var(--ink)}
+.pcard .lead{font-family:var(--display);font-weight:600;font-size:17px;line-height:1.35}
+.pcard .stats{margin-top:14px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:6px 16px}
+.pcard .hrs{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.pcard{display:flex;flex-direction:column}
+.pcard .picks{margin-top:12px;font-size:14.5px;color:var(--ink)}
+.pcard .picks b{font-family:var(--display)}
+.pcard .go{margin-top:auto;padding-top:16px}
+.pcard .go span{display:block;text-align:center;background:var(--c);color:#fff;font-family:var(--display);font-weight:700;border-radius:10px;padding:11px 14px}
+:root[data-theme="dark"] .pcard .go span,:root:not([data-theme="light"]) .pcard .go span{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .pcard .go span{color:#fff}}
+
+/* park header */
+.phead{background:var(--c);color:#fff;padding:38px 0 30px}
+:root[data-theme="dark"] .phead,:root:not([data-theme="light"]) .phead{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .phead{color:#fff}}
+.phead h1{font-size:clamp(34px,6vw,58px);font-weight:800}
+.phead p{margin-top:12px;font-size:18px;max-width:60ch}
+.phead .more{margin-top:10px;font-size:15px;opacity:.9}
+.infogrid{display:grid;gap:14px;margin:22px 0 4px}
+@media(min-width:760px){.infogrid.two{grid-template-columns:1fr 1fr}}
+.info{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.info h3{font-size:18px;margin-bottom:8px}
+.info ul{margin:0;padding-left:18px}
+.info li{margin:4px 0}
+.info.closed{border-left:5px solid #E0A100}
+.subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:26px 0 6px}
+.stab{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer}
+.stab[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+:root[data-theme="dark"] .stab[aria-pressed="true"],:root:not([data-theme="light"]) .stab[aria-pressed="true"]{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .stab[aria-pressed="true"]{color:#fff}}
+
+/* filters */
+.filters{position:sticky;top:calc(env(safe-area-inset-top,0px) + 57px);z-index:15;background:var(--paper);padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:18px}
+.frow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+.frow:first-child{margin-top:0}
+.filters input[type=search],.filters select{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:8px 12px;font:inherit;min-width:0}
+.filters input[type=search]{flex:1 1 200px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;font-weight:500;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.flab{font-size:13.5px;color:var(--muted);margin-right:2px}
+.count{margin-left:auto;font-size:14px;color:var(--muted)}
+.linkbtn{background:none;border:0;text-decoration:underline;cursor:pointer;color:var(--muted);padding:4px}
+.scalenote{font-size:13.5px;color:var(--muted);margin:2px 0 14px}
+
+/* ride card */
+.cards{display:grid;gap:18px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px 20px 18px}
+.rc-top{display:flex;gap:14px;justify-content:space-between;align-items:flex-start}
+.rc h3{font-size:24px;font-weight:700}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.badge{font-size:12.5px;font-weight:600;border-radius:6px;padding:2px 8px;background:var(--soft);color:var(--ink);border:1px solid var(--line)}
+.badge.sr{background:color-mix(in srgb,var(--c) 14%,transparent);border-color:color-mix(in srgb,var(--c) 45%,transparent)}
+.badge.new{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.badge.warn{background:#FFE9A8;color:#4A3500;border-color:#E7B83C}
+.thrill{flex:none;text-align:right;white-space:nowrap}
+.thrill .fls{display:block;font-size:18px;letter-spacing:1px;line-height:1.2}
+.thrill .off{filter:grayscale(1);opacity:.22}
+.thrill .mid{opacity:.55}
+.thrill small{display:block;font-family:var(--sans);font-size:12.5px;color:var(--muted);margin-top:2px}
+.tldr{font-family:var(--display);font-weight:600;font-size:18px;margin-top:12px;color:var(--c)}
+.desc{margin-top:8px;text-wrap:pretty}
+.waitrow{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:center;margin-top:16px}
+.waitlabel{font-size:14px;line-height:1.25}
+.waitlabel b{display:block;font-family:var(--display);font-size:17px}
+.waitlabel span{color:var(--muted);font-size:12.5px}
+.track{position:relative;height:12px;border-radius:7px;background:var(--track);overflow:hidden}
+.track .seg{position:absolute;top:0;bottom:0;background:var(--c);border-radius:7px}
+.track .tick{position:absolute;top:0;bottom:0;width:1px;background:var(--paper);opacity:.85}
+.nowait{font-size:14px;color:var(--muted)}
+.voices{display:grid;gap:12px;margin-top:18px;grid-template-columns:1fr}
+@media(min-width:700px){.voices{grid-template-columns:1fr 1fr}}
+.voice{border-radius:14px;padding:14px 16px;border:1px solid;display:flex;flex-direction:column;gap:6px}
+.voice.sean{background:var(--sean-bg);color:var(--sean-ink);border-color:var(--sean-line)}
+.voice.kas{background:var(--kas-bg);color:var(--kas-ink);border-color:var(--kas-line)}
+.vhead{display:flex;align-items:baseline;gap:8px}
+.vname{font-family:var(--display);font-weight:700;font-size:15px}
+.sean .vname{color:var(--sean-name)}.kas .vname{color:var(--kas-name)}
+.score{font-family:var(--display);font-weight:800;font-size:30px;line-height:1}
+.score small{font-size:14px;font-weight:600;opacity:.7}
+.vlabel{font-size:13.5px;opacity:.85}
+.vtext{font-family:var(--serif);font-size:17px;line-height:1.45;white-space:pre-line}
+.vtext.empty{font-family:var(--sans);font-size:14px;opacity:.7;font-style:italic}
+.kws{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.kw{font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+.thnote{margin-top:10px;font-size:14px;color:var(--muted)}
+
+/* show cards (lighter) */
+.sc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.sc h3{font-size:21px}
+.sc .desc{margin-top:6px}
+.sc .voices{margin-top:14px}
+
+/* lists */
+.top2{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.top2{grid-template-columns:1fr 1fr}}
+.toplist{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px}
+.toplist h3{font-size:20px;margin-bottom:8px}
+.toplist ol{margin:0;padding-left:24px}
+.toplist li{margin:5px 0}
+.meets{columns:2 280px;column-gap:28px;padding-left:20px;margin:0}
+.meets li{break-inside:avoid;margin:5px 0}
+.explore{margin-top:44px;border-top:1px solid var(--line);padding-top:24px}
+.explore h2{font-size:24px;margin-bottom:12px}
+.explore .chips{display:flex;flex-wrap:wrap;gap:10px}
+.explore a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font-weight:600;text-decoration:none}
+.explore a i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+.empty-state{padding:30px 0;color:var(--muted)}
+
+/* compare */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{position:sticky;top:0;background:var(--card);font-family:var(--display);font-weight:700;font-size:14px}
+th button{background:none;border:0;cursor:pointer;font:inherit;font-weight:700;padding:0;display:inline-flex;gap:4px;align-items:center}
+tr:last-child td{border-bottom:0}
+td .pk{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+td .pk i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c)}
+td.num{font-family:var(--display);font-weight:700}
+td .mini{width:150px}
+td .mini .track{height:9px}
+.dim{color:var(--muted)}
+
+footer{margin-top:56px;border-top:1px solid var(--line);padding:30px 0 56px;color:var(--muted);font-size:14.5px}
+footer h3{font-size:17px;color:var(--ink);margin-bottom:8px}
+footer p+p{margin-top:8px}
+@media (prefers-reduced-motion:no-preference){
+  .track .seg{animation:grow .7s ease-out both;transform-origin:left}
+  @keyframes grow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+}
+@media(max-width:699px){.filters{position:static}}
+@media print{.bar,.filters,.subtabs,.mode{display:none!important}.rc,.sc{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<header class="bar" style="position:sticky">
+  <div class="wrap">
+    <a class="brand" href="#overview">Orlando guide</a>
+    <nav class="tabs" id="tabs" aria-label="Sections"></nav>
+    <span class="here" id="here"></span>
+    <button class="menubtn" id="menu" aria-expanded="false" aria-controls="menupanel">Menu: all parks</button>
+    <button class="mode" id="mode" aria-label="Switch between light and dark mode" title="Light or dark">◐</button>
+  </div>
+  <div class="menupanel" id="menupanel" hidden></div>
+</header>
+<main id="app"></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script id="data" type="application/json">{"title": "FinTech Guide to Orlando Theme Parks", "overview": {"bullets": [[0, "Magic Kingdom: if you like Disney or classic nostalgia, this is the park for you. It has the most rides and entertainment, though the majority of those rides are not thrill rides – they’re more about immersion and storytelling. There are ~4 I’d call a thrill ride, but nothing as intense as you’d get at Universal"], [0, "EPCOT: EPCOT has less of the “DISNEY” vibe overall than Magic Kingdom, so if your first reaction was “oh gods, we’re going to Disney?” then EPCOT is likely your better choice. This is more of a cultural experience where the main attraction is the World Showcase with 11 country themed mini-lands. Walking 5 minutes and “being in” another country, complete with local food and drinks, is one of the main appeals. There are less rides in total, but it has a few of each kind – slow character based rides and a few faster thrill rides"], [0, "Universal: they have more intense thrill rides along with movie themed rides. A lot of “screen-based” rides with projectors."], [0, "Other Disney World parks – we currently aren’t planning on these being options based on logistics. Magic Kingdom and EPCOT are both directly accessible from the main parking area, making it easy for people to split between those parks. Getting to these other two require multiple transfers on Disney trains/busses:"], [1, "Hollywood Studios: the main draw here is it’s where all the Star Wars rides/lands are. It also has Sean’s favorite nighttime show, Fantasmic!"], [1, "Animal Kingdom: the smallest of the 4, with a focus around wildlife including a drive through safari with real animals. This is also where the Avatar themed land is"], [0, "Alternative: you can just hang out at the house and chill/relax if you aren’t into the theme park idea!"], [0, "Heads up: we do not yet have approval to split the group between Walt Disney World and Universal. That adds logistical challenges we weren’t planning on so TBD on Universal being an option"], [0, "Avg wait times: I’ve included this based on a couple queue tracker websites. My gut is they’re a tad under reported, likely because the first hour or two of the day and the last hour or two of the day pull down the average. But it’s still a good rough approximation."]], "ai": ["Sean and Kassie created keywords, thrill ratings, personal ratings, and personal commentary.", "Claude wrote the ride and show descriptions and one-line summaries from official park descriptions, pulled the average wait times, single rider notes, and Jan 20 and 21 hours, wrote the Universal park intros, and proofread. It also drafted keywords for the Universal rides and the entertainment listings."], "legend": [["🔥", "Very slow, no drops/shocks/surprises, no spinning"], ["🔥🔥", "Still very mild, but may have a spinning or a single small drop"], ["🔥🔥🔥", "More action packed"], ["🔥🔥🔥🔥", "Standard rollercoaster with at least moderate intensity"], ["🔥🔥🔥🔥🔥", "Cedar Point / Six Flags style hypercoaster (Magic Kingdom, EPCOT, and Universal don’t have any of these)"]]}, "parks": [{"key": "mk", "sheet": "Magic Kingdom", "intro": [[0, "This is exactly what comes to mind when you think of Disney World/Disneyland"]], "rides": [{"name": "Astro Orbiter", "desc": "A retro two-seat rocket lifts you high above Tomorrowland and circles a cluster of planets. A lever lets you control how high you fly.", "tldr": "High-up spinner you steer for height", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 5.0, "hi": null, "label": "", "comment": "Kind of cool it’s up high I suppose. There are three versions of this style ride in Magic Kingdom though"}, "kassie": {"lo": 6.0, "hi": null, "label": "", "comment": "I feel like I usually skip this in favor of dumbo"}, "keywords": ["Elevated", "Tomorrowland", "Sci-fi", "Spinning", "Outdoors"], "wait": {"lo": 11, "hi": 19}, "single": false, "singleNote": "", "badge": ""}, {"name": "Barnstormer", "desc": "Goofy's homemade stunt plane takes you up a wooden tower and swooping through a barnyard in Storybook Circus.", "tldr": "Starter coaster for little kids", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kid’s coaster", "Disney character", "Circus", "Storybook Circus", "Outdoors"], "wait": {"lo": 9, "hi": 17}, "single": false, "singleNote": "", "badge": ""}, {"name": "Big Thunder Mountain Railroad", "desc": "A runaway mine train races through an active gold mine. Refurbished with new track.", "tldr": "Tame western coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Just the right level of wheeeee thrill for me. Anyone “scared” of rollercoasters shouldn’t worry."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Western", "Popular", "Frontierland", "Outdoors"], "wait": {"lo": 35, "hi": 50}, "single": false, "singleNote": "", "badge": ""}, {"name": "Buzz Lightyear’s Space Ranger Spin", "desc": "Board a star cruiser and blast glowing targets in a galactic battle against Emperor Zurg. The 2026 refresh added handheld blasters, and your car spins a full 360°. Dark, slow-moving, and suitable for all ages.", "tldr": "Laser-tag dark ride", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": "Neat idea but I’m never sure how well the light guns are working (though they might have just refurbished it so it may be working great now)"}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "for nostalgia purposes (and I think they just refreshed it)"}, "keywords": ["Dark ride", "Interactive", "Shooting gallery", "Tomorrowland", "Indoors"], "wait": {"lo": 21, "hi": 35}, "single": false, "singleNote": "", "badge": ""}, {"name": "Dumbo the Flying Elephant", "desc": "Ride Dumbo around Storybook Circus, using a handle to fly high or low. The queue is an indoor play area, and you get a pager for your boarding time.", "tldr": "Classic kiddie spinner, playground queue", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": "Absolute classic Disney parks ride. There are three versions of this style ride in Magic Kingdom though"}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Spinning", "Classic", "Fantasyland", "Outdoors"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Haunted Mansion", "desc": "A Doom Buggy carries you through a maze of haunted chambers. It's dark and mildly spooky, but with no gore, friendly ghosts, and a slow pace.", "tldr": "Gentle spooky classic", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 10.0, "hi": null, "label": "", "comment": "Amazing vibes. It’s fun scary, not gory or horror. A few parts are a bit scary for kids though. Catchy music."}, "kassie": {"lo": 10.0, "hi": null, "label": "", "comment": "this is my favorite ride ngl"}, "keywords": ["Spooky", "Chill", "Classic", "Music", "Popular", "Liberty Square", "Indoors"], "wait": {"lo": 20, "hi": 45}, "single": false, "singleNote": "", "badge": ""}, {"name": "“it’s a small world”", "desc": "A slow boat ride past a chorus of singing children from around the globe. Created for the 1964–65 World's Fair and recreated for Magic Kingdom's 1971 opening.", "tldr": "Gentle sing-along boat", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": "It’s just so kitschy I love it. It’s long, and yes the music essentially repeats over and over and over (but in different languages!). One of the absolute classic Disney rides with ties to the Worlds Fair."}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Animatronics", "Chill", "Cultural", "Classic", "Mary Blair", "Opening Day", "Music", "Earworm", "Boat", "Indoors", "Fantasyland"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Jungle Cruise", "desc": "A scenic, comedic boat tour of rivers across Asia, Africa, and South America.", "tldr": "Pun-filled boat tour", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Very very amusing. An actual live tour guide drives the boat while making really bad/funny puns the entire way."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "I love this one for the host, the classic old school animatronics, and the fact that it’s a very chill 10 min break"}, "keywords": ["Animatronics", "Boat", "Funny", "Live host", "Classic", "Chill", "Outdoors", "Adventureland"], "wait": {"lo": 30, "hi": 50}, "single": false, "singleNote": "", "badge": ""}, {"name": "Mad Tea Party", "desc": "Spin in an oversized pastel teacup around a giant teapot, controlling your own spin. Inspired by the Mad Hatter's party in Alice in Wonderland and modeled on Disneyland's 1955 original.", "tldr": "Spin as fast as you dare", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "Could creep up if you really try to get it spinning fast", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": "I don’t like spinny rides, but I recognize its place among the classics of Disney parks"}, "kassie": {"lo": 4.0, "hi": null, "label": "", "comment": "Biased, I’m a teacup puker"}, "keywords": ["Spinning", "Classic", "Outdoors", "Shade", "Fantasyland"], "wait": {"lo": 10, "hi": 15}, "single": false, "singleNote": "", "badge": ""}, {"name": "Magic Carpets of Aladdin", "desc": "A four-passenger flying carpet circles a giant genie lamp. Front-row riders control height; back-row riders tip the carpet forward and back.", "tldr": "Dumbo with a tilt", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 5.0, "hi": null, "label": "", "comment": "Nothing wrong with it, but there are three versions of this ride in Magic Kingdom and you’d be better off picking Dumbo or Astro Orbiter."}, "kassie": {"lo": 5.0, "hi": null, "label": "", "comment": "I usually also skip this one for Dumbo"}, "keywords": ["Spinning", "Adventureland", "Outdoors"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Main Street Vehicles", "desc": "Board a vintage horse-drawn trolley, omnibus, jitney, or fire engine for a one-way ride between Town Square and the plaza in front of Cinderella Castle. Not available during parades.", "tldr": "Short nostalgic ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 4.0, "hi": null, "label": "", "comment": "Neat as scenery and feel free to hop on for a quicker trip down Main Street than walking, but don’t wait in line for it."}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Chill", "Transportation", "Classic", "Horses", "Main Street"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Many Adventures of Winnie the Pooh", "desc": "An oversized Hunny Pot carries you through storybook scenes: a windstorm with Piglet and Eeyore, a bouncy hide-and-seek with Tigger, and a dream of Heffalumps and Woozles. The queue is interactive.", "tldr": "Gentle storybook dark ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": "It’s cute if you like the Winnie the Pooh characters. There are some very psychedelic parts."}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Chill", "Indoors", "Disney characters", "Music", "Fantasyland"], "wait": {"lo": 25, "hi": 40}, "single": false, "singleNote": "", "badge": ""}, {"name": "Peter Pan’s Flight", "desc": "A pirate galleon flies you over London and on to Neverland, past scenes from the animated film. Your shadow comes to life on the wall in the queue.", "tldr": "Gentle flying dark ride, long lines", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.5, "hi": null, "label": "", "comment": "The ride vehicles are suspended from above rather than on the ground which is a nice quirk of this ride. Cool scene where you fly over a miniaturized London."}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "These indoor dark rides are so classic"}, "keywords": ["Dark ride", "Chill", "Indoors", "Disney characters", "Suspended cars", "Fantasyland"], "wait": {"lo": 35, "hi": 50}, "single": false, "singleNote": "", "badge": ""}, {"name": "Pirates of the Caribbean", "desc": "A boat voyage back to a time when pirates ruled the seas. You sail past cannon fire and a burning seaside town while pirates sing \"A Pirate’s Life for Me.\" Those on the outside seats may get a tiny bit wet from the one small drop.", "tldr": "Classic boat dark ride", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Really good immersion and thematic ride. Sadly not as epic and long as the Disneyland version but well worth the ride."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "This one’s also so fun and classic, really neat animatronics. I find this ride weirdly cozy"}, "keywords": ["Chill", "Boat", "Wet", "Classic", "Music", "Animatronics", "Drop", "Indoors", "Adventureland"], "wait": {"lo": 15, "hi": 30}, "single": false, "singleNote": "", "badge": ""}, {"name": "Prince Charming Regal Carrousel", "desc": "A carousel built in 1917 by the Philadelphia Toboggan Co. It began as the Liberty Carrousel in Detroit and has been at Disney World since 1971.", "tldr": "Antique carousel", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": "It’s a gorgeous merry-go-round, worth a ride if the line is short."}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Chill", "Classic", "Outdoors", "Fantasyland"], "wait": {"lo": 5, "hi": 10}, "single": false, "singleNote": "", "badge": ""}, {"name": "Seven Dwarfs Mine Train", "desc": "A swaying family coaster through the diamond mine from Snow White and the Seven Dwarfs.", "tldr": "Family coaster with the longest lines", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "The cars have a neat swinging effect to them and some cool dwarfs animatronics in the inside part."}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Animatronics?", "Disney characters", "Popular", "Outdoors", "Fantasyland"], "wait": {"lo": 45, "hi": 60}, "single": false, "singleNote": "", "badge": ""}, {"name": "Space Mountain", "desc": "A rocket coaster through the dark reaches of outer space, past shooting stars and comets and into a swirling wormhole.", "tldr": "Dark classic coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Completely in the dark with some stars and space projections. One of the more intense coasters at a Disney park. Definitely a classic."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "Really fun little coaster. Fun fact: I got to ride this one with the lights on / with no special effects on as part of a science field trip in high school. It truly doesn’t go that fast in reality; the special effects just make it seem more intense than it really is."}, "keywords": ["Roller coaster", "Sci-fi", "Lights out", "Classic", "Indoors", "Tomorrowland"], "wait": {"lo": 25, "hi": 40}, "single": false, "singleNote": "", "badge": ""}, {"name": "Swiss Family Treehouse", "desc": "A self-guided walk through the treehouse built by the shipwrecked Swiss Family Robinson, inspired by the 1960 Disney film. 116 steps to the top, with 360° views.", "tldr": "Walk-through with lots of stairs", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": "Good theming and it’s unique in that you walk through it on your own."}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Chill", "Walkthrough", "Stairs", "Outdoors", "Adventureland"], "wait": {"lo": 5, "hi": 5}, "single": false, "singleNote": "", "badge": ""}, {"name": "Tiana’s Bayou Adventure", "desc": "A musical flume ride with Princess Tiana and Louis the alligator that ends in a 50-foot drop. There's a strong chance you'll get wet.", "tldr": "Musical flume with a big drop", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "Splash Mountain was a 10", "comment": "I have not ridden this since they changed it from Splash Mountain to Tiana a couple years ago. Splash was probably my #1 favorite Disney ride (10/10) so I have feelings about that; however since it’s the same ride just with a different story and characters, I suspect the new version is very good. You will get wet from the big drop."}, "kassie": {"v": null, "label": "", "comment": "haven't ridden the new version but Splash Mountain is indeed a 10"}, "keywords": ["Wet", "Music", "Disney characters", "Drop", "Indoors", "Animatronics", "Frontierland"], "wait": {"lo": 30, "hi": 60}, "single": false, "singleNote": "", "badge": ""}, {"name": "Tomorrowland Speedway", "desc": "Drive a gas-powered car along a miniature motorway with a working gas pedal and steering wheel.", "tldr": "Go-karts on rails", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 5.0, "hi": null, "label": "", "comment": "No need to ride this given we’re all adults that can drive real cars. Very cool experience for kids though. They’re finally converting these to electric in the near future."}, "kassie": {"lo": 5.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Rider controlled", "Outdoors", "Classic", "Tomorrowland"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "PeopleMover", "desc": "A 10-minute elevated tour of Tomorrowland aboard a magnet-powered transit system, with up-close views of the park.", "tldr": "Elevated sightseeing tram", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": "As tame as it gets but a Tomorrowland classic. I wouldn’t wait very long for it but if the line is short, I’m riding."}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "Really chill, cool to see the park from up high. I think they kind of take you up close to/kind of inside a few other rides which is neat"}, "keywords": ["Chill", "Indoors", "Classic", "Tomorrowland"], "wait": {"lo": 5, "hi": 15}, "single": false, "singleNote": "", "badge": ""}, {"name": "TRON Lightcycle / Run", "desc": "Climb onto your own Lightcycle and race the Grid's Programs, trying to cross eight Energy Gates. Disney calls it one of the fastest coasters at any Disney park.", "tldr": "Fast launch coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": "The newest ride at Magic Kingdom and one of the best. It’s probably the fastest as well. The way you ride it is kind of unique, you basically sit on it like a motorcycle and lean forward. The biggest issue is that it’s very popular so the wait tends to be very very long for what ends up being a very short ride."}, "kassie": {"v": null, "label": "", "comment": "Haven’t done it but it’s the thing I’m most looking forward to. I will literally go to magic kingdom after the offsite and buy the line skipper on my own if we don’t hit it up as a team"}, "keywords": ["Roller coaster", "Dark", "Sci-fi", "Popular", "Tomorrowland"], "wait": {"lo": 60, "hi": 90}, "single": false, "singleNote": "", "badge": "Newest ride"}, {"name": "Under the Sea – Journey of the Little Mermaid", "desc": "Board a clamshell for a musical journey through scenes from The Little Mermaid, including Ursula looming 7.5 feet tall.", "tldr": "Gentle Ariel dark ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Story-based ride that re-tells the Little Mermaid movie in ~4 minutes. Tons of animatronics and the big room where Under the Sea plays has so many fun fish/animal animatronics."}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Chill", "Animatronics", "Music", "Disney characters", "Indoors", "Fantasyland"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Walt Disney World Railroad", "desc": "A vintage narrow-gauge steam train, built between 1916 and 1928. For the park expansion it currently runs only as a shuttle between Main Street and Fantasyland, with no Frontierland stop.", "tldr": "Scenic shuttle, for now", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": "A legit steam powered railroad. Nice scenic way to get to different parts of the park if the line isn’t too long."}, "kassie": {"v": null, "label": "", "comment": "I must have done this as a child but have no recollection"}, "keywords": ["Chill", "Transportation", "Classic", "Main Street", "Fantasyland"], "wait": {"lo": 20, "hi": 20}, "single": false, "singleNote": "", "badge": ""}], "shows": [{"name": "Casey’s Corner Pianist", "desc": "A pianist plays ragtime and Main Street favorites on the porch of Casey's Corner, the hot dog stand on Main Street, U.S.A., several times a day.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Humans", "Outdoors", "Main Street"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Cinderella’s Castle", "desc": "The park's icon at the end of Main Street, and the backdrop for the daily stage shows and nighttime fireworks. You can walk through the castle passage and see its mosaics.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Landmark", "Photo spot", "Walk-through", "Main Street", "Outdoors"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Country Bear Jamboree", "desc": "An Audio-Animatronics musical revue in Frontierland where a cast of country-singing bears performs a hoedown at Grizzly Hall.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": 8.0, "label": "", "comment": "This is cheesy as hell but I love it."}, "kassie": {"v": null, "unrated": true, "label": "", "comment": ""}, "keywords": ["Music", "Animatronics", "Classic", "Indoors", "Frontierland"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Dapper Dans", "desc": "A barbershop quartet in straw boaters and striped jackets that sings close-harmony standards a cappella on Main Street, U.S.A.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Excellent old-school style singing"}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "Biased, I love a cappella"}, "keywords": ["Music", "Humans", "Outdoors", "Classic", "Main Street"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Disney Adventure Friends Cavalcade", "desc": "A daily parade of Disney Princesses and Pixar pals that travels through the park.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": "This is more little kid focused characters. If you want to see a parade, skip this and see the other ones"}, "kassie": {"v": null, "unrated": true, "label": "", "comment": ""}, "keywords": ["Parade", "Outdoors", "Disney characters"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Festival of Fantasy Parade", "desc": "The daytime parade, with elaborate floats, performers, and Disney characters, including a fire-breathing Maleficent dragon, traveling Frontierland, Liberty Square, and Main Street, U.S.A.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Do you like parades? You’ll like this. Do you like Disney characters/music? You’ll love this."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "This is it, this is classic Disney"}, "keywords": ["Parade", "Costumes", "Disney characters", "Music", "Daytime", "Outdoors", "Main Street"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Disney Starlight: Dream the Night Away", "desc": "A nighttime parade of illuminated floats and characters that premiered in July 2025 and travels Frontierland, Liberty Square, and Main Street, U.S.A.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": "Do you like parades? You’ll like this. Do you like Disney characters/music? You’ll love this. Do you like bright neon color lighting? Your eyes will love this"}, "kassie": {"v": null, "label": "never seen it", "comment": "RIP original electric light parade, but this one sounds like it’s pretty good too"}, "keywords": ["Parade", "Costumes", "Disney characters", "Music", "Lights", "Night", "Outdoors", "Main Street"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Hall of Presidents", "desc": "An indoor Audio-Animatronics show in Liberty Square with a figure of every U.S. president, built around a film and narration on American history.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 2.0, "hi": null, "label": "", "comment": "Used to be interesting and kinda neat."}, "kassie": {"lo": 1.0, "hi": null, "label": "", "comment": "Trump’s animatronic kind of looks like Hillary Clinton, so I guess that’s funny"}, "keywords": ["Animatronics", "Indoors", "Educational", "Liberty Square"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Mickey’s Magical Friendship Faire", "desc": "A castle-stage show in front of Cinderella Castle with Mickey, Minnie, and friends, joined by Disney Princesses, set to music.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 5.0, "hi": null, "label": "", "comment": "If I’m passing by and this is happening, I’ll stop and watch. I wouldn’t go out of my way for it though."}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "I have nostalgic feelings for this one but also probably wouldn’t go out of my way for it"}, "keywords": ["Stage show", "Disney characters", "Princesses", "Music", "Daytime", "Outdoors", "Castle"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Mickey’s PhilharMagic", "desc": "A 3D film starring Donald Duck, who tries to conduct Mickey's orchestra and ends up flying through classic Disney movie scenes, with in-theater effects.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": 8.0, "label": "", "comment": "Fun 3d short movie with the best character: Donald Duck. I’m also a sucker for theaters with physical special effects in them and the seats."}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "I love anything that calls back to Fantasia, the best Disney film"}, "keywords": ["Indoors", "Short film", "Fantasyland"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Monsters, Inc. Laugh Floor", "desc": "An interactive comedy show in Tomorrowland where Mike Wazowski and live-animated Monsters, Inc. characters collect audience laughs, with jokes texted in by guests.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": "Good way to get out of the sun for a bit that’s mildly funny. Mostly improv so quality can vary."}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Funny", "Indoors", "Crowd interaction", "Tomorrowland"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Enchanted Tiki Room", "desc": "A classic Audio-Animatronics show in Adventureland where singing birds, flowers, and tiki gods perform a musical revue; it gets loud when the tiki gods summon the storm.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 10.0, "hi": null, "label": "", "comment": "Absolute must-do for me. One of the earliest animatronic shows Disney ever made with a wonderful soundtrack. Gets you out of the sun as well. For a perfect combo, get some dole whip to bring in and eat during it."}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Indoors", "Animatronics", "Classic", "Music", "Adventureland"], "wait": null, "single": false, "singleNote": "", "badge": ""}], "meets": ["Enchanted Tales with Belle", "Meet Ariel at her Grotto", "Meet Aladdin characters", "Meet Cinderella and Princess Tiana (Princess Fairytale Hall)", "Meet Donald, Daisy, Goofy as Circus Stars (Pete’s Silly Sideshow)", "Meet Mickey (Town Square Theater)", "Meet Mirabel (Fairytale Garden)", "Meet Peter Pan (Fantasyland)", "Meet various princesses (Princess Fairytale Hall)", "Meet Winnie the Pooh and Tigger (The Thotful Spot)"], "food": [], "top5": {"Sean": ["Haunted Mansion", "Pirates", "Tiki Room", "TRON"], "Kassie": ["Haunted Mansion", "Space Mountain", "Big Thunder Mountain", "Splash Mountain / Tiana ride", "Jungle Cruise"]}, "closed": ["Carousel of Progress: closed through spring"], "hours": ["Wed, Jan 20, 2027: 9 AM–9 PM (Early Entry 8:30 AM; Extended Evening Hours 9–11 PM for select resort guests)", "Thu, Jan 21, 2027: 9 AM–9 PM (Early Entry 8:30 AM)"], "misc": []}, {"key": "epcot", "sheet": "EPCOT", "intro": [[0, "Ideal if you aren’t into the Disney-ness, generally considered the “more adult” option. The World Showcase with 11 different countries is the main feature of the park"]], "rides": [{"name": "Frozen Ever After (Norway)", "desc": "Voyage to Arendelle on an ancient Nordic vessel through a frozen forest, past Kristoff's troll family, to Elsa's ice palace. There are short forward and backward drops down waterfalls, and you may get a little wet.", "tldr": "Frozen boat ride, can get wet", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": "technically no rating since I haven’t ridden since they rethemed it from Norway folklore to Frozen, but the pre-Frozen version I’d give 8. And I like Frozen so I expect it’ll stay 8"}, "kassie": {"v": null, "label": "", "comment": "Never ridden the new Frozen version but the old version was a 9"}, "keywords": ["Classic", "Rethemed", "Music", "Water", "Boat", "Norway"], "wait": {"lo": 42, "hi": 56}, "single": false, "singleNote": "", "badge": ""}, {"name": "Gran Fiesta Tour Starring The Three Caballeros (Mexico)", "desc": "A gentle boat ride through the Mexico Pavilion as Panchito and José search for their missing friend Donald Duck.", "tldr": "Gentle indoor boat, short lines", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "We stan the three caballeros in this household"}, "keywords": ["Chill", "Classic", "Disney characters", "Boat", "Mexico"], "wait": {"lo": 10, "hi": 15}, "single": false, "singleNote": "", "badge": ""}, {"name": "Guardians of the Galaxy: Cosmic Rewind", "desc": "An intergalactic chase through space and time with the Guardians of the Galaxy. The coaster vehicles rotate 360° to keep you facing the action, and it features Disney's first reverse launch.", "tldr": "The park's thrill coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "Guessing, need to watch a ride through", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Music", "Dark"], "wait": {"lo": 65, "hi": 90}, "single": false, "singleNote": "", "badge": ""}, {"name": "Journey Into Imagination With Figment", "desc": "Figment the dragon guides you through the Imagination Institute's sensory labs while Dr. Nigel Channing tries to keep order. The Smell Lab goes comically wrong.", "tldr": "Quirky sensory dark ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "it's lame but in the most endearing way"}, "keywords": ["Chill", "Disney character", "Dark ride", "World Celebration"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Living with the Land", "desc": "Another long educational ride – the first half is an indoor dark ride through different biomes showing wildlife and discussing how humans impact nature; the second half goes through a green house and shows off new and innovative farming techniques. Whole ride is about 15 mins and is honestly a great ride for chilling out or taking a break", "tldr": "Chill educational boat ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Boat", "Educational", "Chill", "Indoors (partially)", "Animatronics", "World Nature"], "wait": {"lo": 10, "hi": 25}, "single": false, "singleNote": "", "badge": ""}, {"name": "Mission: SPACE", "desc": "A NASA-style training and launch. The intense Orange mission uses a spinning centrifuge for a trip to Mars; the gentler Green mission orbits Earth.", "tldr": "Pick your intensity", "extras": [], "thrill": {"min": 2, "max": 4}, "thrillNote": "You get to pick between two intensities", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "Last time I rode it I thought it was an 8 but iirc the intense version is pretty puke-inducing"}, "keywords": ["Space", "Spinning", "Intensity choice", "World Discovery"], "wait": {"lo": 15, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Remy's Ratatouille Adventure", "desc": "Shrink to Remy's size and scurry through the kitchen, dining room, and walls of Gusteau's Paris restaurant on a Pixar-themed adventure.", "tldr": "Trackless Pixar dark ride", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "Guessing there’s just enough spinning to bump from 1 to 2, need to watch a ride through.", "sean": {"v": null, "label": "", "comment": "Riding this is my top priority for the trip"}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["New", "Pixar characters", "Trackless", "France"], "wait": {"lo": 45, "hi": 60}, "single": false, "singleNote": "", "badge": ""}, {"name": "The Seas with Nemo & Friends", "desc": "Descend in a \"clamobile\" through Finding Nemo scenes as everyone searches for Nemo, then explore the SeaBase aquarium.", "tldr": "Gentle Nemo ride plus aquarium", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Chill", "Pixar characters", "World Nature"], "wait": {"lo": 9, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "Soarin'", "desc": "A simulated hang-glide on a 180-degree IMAX dome with aerial footage, music, and scents. Currently the limited-time Soarin' Across America flight over the U.S. (since May 26, 2026)", "tldr": "Simulated flight over the U.S.", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Flying", "IMAX", "World Nature"], "wait": {"lo": 15, "hi": 30}, "single": false, "singleNote": "", "badge": ""}, {"name": "Spaceship Earth", "desc": "A dark ride through the geosphere tracing the history of human communication, from the Stone Age to the computer age.", "tldr": "Slow history ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": "Nerd unite – it’s 100% educational and charmingly dated at this point, but I will ride it every time. (they’re temporarily closing it soon to update some parts)"}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "it’s long and educational but also the defining epcot ride"}, "keywords": ["Chill", "Educational", "Classic", "Iconic", "Orb", "World Celebration"], "wait": {"lo": 10, "hi": 15}, "single": false, "singleNote": "", "badge": ""}, {"name": "Test Track", "desc": "A joyride into the future of transportation. You zip past scenic vistas while learning how new technology is changing how we connect, get a glimpse of the cities and mobility of tomorrow, then finish with a high-speed race.", "tldr": "Fast car ride", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "Before guardians this was like, the most exciting ride in the park (also it has apparently been overhauled since i last went on it, so not sure how the new experience is)"}, "keywords": ["Fast", "Race", "World Discovery"], "wait": {"lo": 55, "hi": 75}, "single": true, "singleNote": "Normally has a single rider line, but it was reported temporarily closed in Oct 2026. Check before relying on it.", "badge": ""}], "shows": [{"name": "Acrobatico!", "desc": "Gravity-defying acrobatic skills at the France pavilion, a one-person circus-style act of about 15 minutes. It has also temporarily performed in the Italy pavilion in place of Sergio.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Acrobatics", "Street performer", "Funny", "France", "Outdoors"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The American Adventure", "desc": "A patriotic mixed-media and Audio-Animatronics theater presentation on U.S. history, in the American Adventure pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Animatronics", "Educational", "History", "Classic", "Indoors", "American pavilion"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Awesome Planet", "desc": "A short film in The Land pavilion celebrating the planet's natural habitats and wildlife.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Short film", "Educational", "Nature", "Indoors", "World Nature"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Beauty and the Beast Sing-Along", "desc": "Clips from Disney's Beauty and the Beast with on-screen lyrics so the audience can sing along, shown in the France pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Short film", "Sing-along", "Disney characters", "Music", "Indoors", "France"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Bijutsu-kan Gallery", "desc": "An indoor gallery in the Japan pavilion that hosts rotating exhibits of Japanese art and culture.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": ""}, "keywords": ["Art", "Cultural", "Chill", "Indoors", "Japan"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Canada Far and Wide in Circle-Vision 360", "desc": "A Circle-Vision 360 film that surrounds you with Canada's landscapes and cities, shown in the Canada pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Film", "Circle-Vision 360", "Scenic", "Cultural", "Indoors", "Canada"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Command Performance (British rock band)", "desc": "A live British rock band that performs cover songs in the United Kingdom pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Rock", "Live band", "Outdoors", "United Kingdom"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Disney and Pixar Short Film Festival 4D", "desc": "A 4D theater showing Disney and Pixar short films with in-theater special effects.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["4D", "Short film", "Pixar characters", "Special effects", "Indoors", "World Celebration"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Disney’s DuckTales World Showcase Adventure", "desc": "An interactive scavenger hunt through World Showcase, played on your phone with Scrooge McDuck, Huey, Dewey, Louie, and Webby.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Interactive", "Phone app", "Scavenger hunt", "Disney characters", "Kids", "World Showcase"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Entertainment at Canada Mill Stage", "desc": "A stage in the Canada pavilion that hosts a rotating lineup of Canadian bands, such as Alberta Bound, Bodh'aktan, Raffy, and Suroit.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Live band", "Rotating acts", "Outdoors", "Canada"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Entertainment at CommuniCore Plaza Stage", "desc": "A stage in CommuniCore Plaza that hosts live music and performances; the acts rotate, so check the app for the day's lineup.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Rotating acts", "Festival", "Outdoors", "World Celebration"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Entertainment at Germany Gazebo", "desc": "Live traditional German-style music performed at the gazebo in the Germany pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Live band", "Outdoors", "Germany"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Gallery of Arts and History", "desc": "A gallery in the Italy pavilion that hosts exhibits of art and history.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Art", "Cultural", "Chill", "Indoors", "Italy"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Luminous: The Symphony of Us", "desc": "The nightly multimedia and fireworks show over World Showcase Lagoon, set to a soundtrack.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "If this is the same fireworks show they had 10 years ago…"}, "keywords": ["Fireworks", "Nighttime", "Music", "Outdoors", "World Showcase Lagoon"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Impressions de France", "desc": "A panoramic film tour of France set to classical French music, shown in the France pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Film", "Scenic", "Music", "Cultural", "Chill", "Indoors", "France"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "JAMMitors", "desc": "A percussion act of \"janitors\" who drum on trash cans, buckets, and brooms in World Celebration.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Percussion", "Funny", "Music", "Outdoors", "World Celebration"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Matsuriza", "desc": "Experience the thundering sound of Taiko, an ancient form of Japanese drumming, performed by Matsuriza at the Japan pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Taiko drumming", "Music", "Cultural", "Outdoors", "Japan"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Max & Aydar", "desc": "Max and Aydar spin, balance, and juggle, a roaming pair of playful variety performers with laugh-out-loud antics, in World Celebration.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Juggling", "Circus acts", "Funny", "Roaming", "Outdoors", "World Celebration"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Music of Mexico", "desc": "A live mariachi band, Mariachi Cobre, plays several times a day at the Mexico pavilion, for about 20 to 25 minutes a set.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Mariachi", "Live band", "Outdoors", "Mexico"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Reflections of China", "desc": "A Circle-Vision 360 film of China's landscapes and culture, shown in the China pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "I think I’ve seen this one and it was fine?"}, "keywords": ["Film", "Circle-Vision 360", "Scenic", "Cultural", "Indoors", "China"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Rose & Crown Pub Musician", "desc": "A singer-musician who performs sing-along songs at the Rose & Crown Pub in the United Kingdom pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Sing-along", "Pub", "Chill", "United Kingdom"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "SeaBase Aquarium", "desc": "Get close to clownfish, sharks, and more in the massive 5.7-million-gallon saltwater aquarium at The Seas with Nemo & Friends pavilion.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Aquarium", "Animals", "Educational", "Chill", "Indoors", "World Nature"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Sergio", "desc": "A juggling and mime act that performs in the Italy courtyard several times a day, sometimes pulling in audience members.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Juggling", "Mime", "Funny", "Audience interaction", "Outdoors", "Italy"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Turtle Talk With Crush", "desc": "An interactive show in which Crush the sea turtle chats live with the audience, answering their questions.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": "only seen clips online but it’s wicked cute"}, "keywords": ["Interactive", "Funny", "Pixar characters", "Kids", "Indoors", "World Nature"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Voices of Liberty", "desc": "A close-harmony vocal group that sings American standards and patriotic songs inside the American Adventure pavilion several times a day.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["A cappella", "Music", "Patriotic", "Indoors", "American pavilion"], "wait": null, "single": false, "singleNote": "", "badge": ""}], "meets": ["Meet a Friend from the Hundred Acre Wood in the United Kingdom", "Meet Alice in the United Kingdom", "Meet Anna and Elsa at Royal Sommerhus", "Meet Asha Near World Showcase Plaza", "Meet Belle in France", "Meet Beloved Disney Pals at Mickey & Friends", "Meet Figment Inside ImageWorks", "Meet One of the Three Caballeros in Mexico", "Meet Pluto Near EPCOT Main Entrance", "Meet Princess Aurora in France", "Meet Princess Jasmine in Morocco", "Meet Snow White in Germany", "Meet Star-Lord near Guardians of the Galaxy: Cosmic Rewind", "Meet the Legendary Warrior in China"], "food": [], "top5": {"Sean": ["Spaceship Earth", "Test Track", "Gran Fiesta Tour", "Frozen Ever After"], "Kassie": ["Test Track", "Frozen Ever After", "Mission: SPACE", "Gran Fiesta Tour", "Soarin'", "I assume Guardians of the Galaxy will end up on this list just based on the description"]}, "closed": [], "hours": ["Wed, Jan 20, 2027: 9 AM–9 PM (Early Entry 8:30 AM)", "Thu, Jan 21, 2027: 9 AM–9 PM (Early Entry 8:30 AM); Disney After Hours is a separate ticketed event that night, 9:30 PM–12:30 AM"], "misc": []}, {"key": "usf", "sheet": "Universal Studios (Main)", "intro": [[0, "Best for movie and TV fans and Harry Potter lovers (Diagon Alley): mostly screen-based simulator and dark rides, with only a couple of true thrill rides (Escape from Gringotts, Revenge of the Mummy)"]], "rides": [{"name": "Harry Potter and the Escape from Gringotts", "desc": "Descend deep underground on a multi-dimensional thrill ride where you meet Harry, Ron, and Hermione, and have to evade Voldemort, Bellatrix, trolls, and other creatures to make it back to Diagon Alley.", "tldr": "Underground 3D/4D thrill ride", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Roller coaster", "Harry Potter", "Diagon Alley", "Popular", "Immersive", "Indoors", "Animatronics"], "wait": {"lo": 40, "hi": 80}, "single": true, "singleNote": "", "badge": ""}, {"name": "Revenge of the Mummy", "desc": "Plunge into total darkness on a coaster where huge fireballs, swarms of scarab beetles, and an army of warrior mummies close in from all sides.", "tldr": "Dark indoor coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": "There’s a point where they stop the coaster and light the ceiling on fire (like, real fire), so yea it’s pretty rad"}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "This is one of the only modern Universal rides I’ve been on and I loved it"}, "keywords": ["Roller coaster", "Dark", "Indoors", "Spooky", "Sci-fi", "Production Central"], "wait": {"lo": 35, "hi": 60}, "single": true, "singleNote": "", "badge": ""}, {"name": "Despicable Me Minion Mayhem", "desc": "A kid-friendly motion-simulator ride in Illumination's Minion Land, based on the Despicable Me films (Universal's listing gives only the ride type and audience).", "tldr": "Family Minion simulator", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Simulator", "Motion", "Minions", "Funny", "Indoors", "Illumination"], "wait": {"lo": 30, "hi": 60}, "single": false, "singleNote": "", "badge": ""}, {"name": "E.T. Adventure", "desc": "Hop aboard your starbound bike and help E.T. save his dying planet.", "tldr": "Classic bike-flight dark ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "I have been on this one a long long time ago, and I remember it being cheesy and goofy (positive)"}, "keywords": ["Dark ride", "Classic", "Opening Day", "Indoors", "Gentle", "Nostalgia"], "wait": {"lo": 25, "hi": 50}, "single": false, "singleNote": "", "badge": ""}, {"name": "The Simpsons Ride", "desc": "Grab a seat and careen and crash through Krustyland with Homer, Marge, Bart, Lisa, and Maggie in an over-the-top adventure.", "tldr": "Wild cartoon simulator", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Simulator", "Motion", "Funny", "Indoors", "Springfield"], "wait": {"lo": 25, "hi": 45}, "single": false, "singleNote": "", "badge": ""}, {"name": "TRANSFORMERS: The Ride-3D", "desc": "Board your N.E.S.T. vehicle and join Optimus Prime, Evac, and your favorite Autobots in an explosive, ultra-immersive fight to save humanity.", "tldr": "3D Autobot battle", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["3D", "Dark ride", "Motion", "Indoors", "Action", "Popular"], "wait": {"lo": 25, "hi": 45}, "single": true, "singleNote": "", "badge": ""}, {"name": "Race Through New York Starring Jimmy Fallon", "desc": "Face Jimmy Fallon and favorite characters from The Tonight Show in a fun-filled race through, below, and above New York City.", "tldr": "Simulator race against Fallon", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Simulator", "Motion", "Funny", "Indoors", "Celebrity"], "wait": {"lo": 20, "hi": 40}, "single": false, "singleNote": "", "badge": ""}, {"name": "MEN IN BLACK Alien Attack!", "desc": "With the fate of the world in your hands, become a full-fledged Men in Black agent in a game with several possible endings, so no ride is exactly the same.", "tldr": "Alien shooting gallery", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 9.0, "hi": null, "label": "", "comment": "I love shooting gallery rides and this one’s also super nostalgic for me"}, "keywords": ["Interactive", "Shooting gallery", "Dark ride", "Sci-fi", "Indoors"], "wait": {"lo": 15, "hi": 40}, "single": true, "singleNote": "", "badge": ""}, {"name": "Trolls Trollercoaster", "desc": "A family coaster at the heart of DreamWorks Land; Universal's pitch is to scream with laughter on the Trollercoaster.", "tldr": "Kid-friendly coaster", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kids' coaster", "Family", "Outdoors", "Colorful", "Gentle"], "wait": {"lo": 15, "hi": 35}, "single": false, "singleNote": "", "badge": ""}, {"name": "Kang & Kodos' Twirl 'n' Hurl", "desc": "Hop into a flying saucer and head for the stratosphere with Kang and Kodos; each saucer's thrust lifts it about 10 feet off the ground.", "tldr": "Aerial saucer spinner", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Spinning", "Kids", "Funny", "Simpsons", "Outdoors"], "wait": {"lo": 15, "hi": 25}, "single": false, "singleNote": "", "badge": ""}, {"name": "Illumination's Villain-Con Minion Blast", "desc": "Join Illumination's Minions at Villain-Con and meet Belle Bottom, Jean Clawed, and the rest of the Vicious 6 as you blast your way to supervillain stardom.", "tldr": "Interactive blaster ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Interactive", "Minions", "Funny", "Kids", "Indoors"], "wait": {"lo": 5, "hi": 15}, "single": false, "singleNote": "", "badge": ""}, {"name": "Ollivanders Experience in Diagon Alley (experience, not a ride)", "desc": "This is a brief show, not a ride. Meet the wandkeeper at Ollivanders, makers of fine wands since 382 B.C., and watch a wand choose its wizard, possibly you.", "tldr": "Wand-choosing show", "extras": [], "thrill": {"label": "n/a"}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Wand shop", "Harry Potter", "Interactive", "Show", "Indoors"], "wait": {"lo": 5, "hi": 10}, "single": false, "singleNote": "", "badge": ""}], "shows": [{"name": "Animal Actors on Location!", "desc": "An animal-tricks and comedy show in the Hollywood area.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Animals", "Comedy", "Indoors", "Hollywood"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Bourne Stuntacular", "desc": "An indoor stunt show in the Hollywood area (listed on 2025 schedules; confirm it's still running).", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Stunts", "Indoors", "Action", "Hollywood"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Universal Orlando's Horror Make-Up Show", "desc": "A theater presentation on the art of makeup, in the Hollywood area.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Indoors", "Makeup", "Comedy", "Hollywood"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "CineSational: A Symphonic Spectacular", "desc": "The nighttime spectacular at the park's lagoon, set to movie music.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Nighttime", "Music", "Outdoors", "Lagoon"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "DreamWorks Imagination Celebration", "desc": "A live stage show with DreamWorks characters in DreamWorks Land.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Characters", "Stage show", "Kids", "DreamWorks Land"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Po Live!", "desc": "An interactive digital show in DreamWorks Land where kids learn kung fu moves with Po.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Interactive", "Kids", "Kung Fu Panda", "DreamWorks Land"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Celestina Warbeck and the Banshees", "desc": "A live singing and dancing act in Diagon Alley.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Harry Potter", "Outdoors", "Diagon Alley"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Tales of Beedle the Bard", "desc": "A puppet show in Diagon Alley.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"lo": 6.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Puppets", "Harry Potter", "Kids", "Diagon Alley"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Blues Brothers Show", "desc": "A blues concert in the New York area.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Blues", "Outdoors", "New York"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Marilyn & the Diamond Bellas", "desc": "A live music act in the New York area.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Music", "Vocal group", "Outdoors", "New York"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Beat Builders", "desc": "A percussion street act in the San Francisco area (seen on 2025 schedules; confirm it's still running).", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Percussion", "Street show", "Outdoors", "San Francisco"], "wait": null, "single": false, "singleNote": "", "badge": ""}], "meets": ["Meet Scooby-Doo and the Mystery Gang (Hollywood Character Zone)", "Meet Doc Brown (Hollywood Character Zone)", "Meet Marilyn (Hollywood Character Zone)", "Meet Betty Boop (Hollywood Character Zone)", "Meet Dora (Hollywood Character Zone)", "Meet Homer, Marge, Bart, and Lisa Simpson (Hollywood Character Zone)", "Meet Alex the Lion (near Cafe La Bamba)", "Meet Hello Kitty (park exit)", "Meet Shrek, Fiona, and Donkey (Shrek's cottage, DreamWorks Land)", "Meet Poppy and Branch (fountain near DreamWorks Imagination Celebration)", "Meet Gabby and other DreamWorks characters (DreamWorks Land)", "Meet the Minions, Gru, Margo, Edith, Agnes, and characters from Sing (Illumination Theater, Minion Land)", "Meet Optimus Prime, Bumblebee, and Megatron (alley near TRANSFORMERS: The Ride 3-D)", "Meet SpongeBob, Patrick, and Squidward (SpongeBob StorePants)", "Meet the Knight Bus Operator (London)", "Meet the Mummy Guards and Mummy Princess (New York, near Revenge of the Mummy)", "Meet Hashtag the Panda (Race Through New York)"], "food": [], "top5": {"Sean": ["Revenge of the Mummy", "Escape from Gringotts", "The Bourne Stuntacular", "E.T.", "Animal Actors on Location"], "Kassie": ["Revenge of the Mummy", "Men in Black", "E.T."]}, "closed": ["Universal Orlando’s Horror Make-Up Show: temporarily closed since May 12, 2026, listed as returning “Winter 2026” (check before the trip)"], "hours": ["Jan 20 and 21, 2027: not yet posted by Universal as of Nov 19, 2026. For reference, Jan 21, 2026 was 9 AM–7 PM"], "misc": []}, {"key": "ioa", "sheet": "Universal Studios (Islands of Adventure)", "intro": [[0, "The thrill-seeker park: the big coasters (Hagrid’s, VelociCoaster, Hulk), Hogsmeade, and the water rides. Best for teens and adults, though Seuss Landing and Toon Lagoon cater to younger kids"]], "rides": [{"name": "Hagrid's Magical Creatures Motorbike Adventure", "desc": "Take a motorbike ride into the Forbidden Forest on a freewheeling coaster adventure full of surprising twists and magical creatures.", "tldr": "Hogwarts' most-wanted coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Harry Potter", "Immersive", "Popular", "Launch", "Wizarding World", "Outdoors/Indoors"], "wait": {"lo": 100, "hi": 140}, "single": true, "singleNote": "", "badge": ""}, {"name": "Jurassic World VelociCoaster", "desc": "A high-speed dash through the park's Raptor Paddock on a jungle coaster that rises high above the terrain; Universal calls it the apex predator of rollercoasters.", "tldr": "Fast, intense launch coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Launch", "Inversions", "Popular", "Jurassic Park", "Outdoors", "Intense"], "wait": {"lo": 55, "hi": 80}, "single": false, "singleNote": "", "badge": ""}, {"name": "Flight of the Hippogriff", "desc": "A family-friendly coaster that spirals and dives around the pumpkin patch and swoops past Hagrid's hut.", "tldr": "Mild family coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 7.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kids' coaster", "Harry Potter", "Family", "Outdoors", "Wizarding World"], "wait": {"lo": 35, "hi": 60}, "single": false, "singleNote": "", "badge": ""}, {"name": "Pteranodon Flyers", "desc": "Glide high above Jurassic Park aboard Pteranodon Flyers.", "tldr": "Elevated glider for kids", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kids", "Elevated", "Jurassic Park", "Outdoors", "Gentle", "Child-focused (adult only with a child)"], "wait": {"lo": 30, "hi": 55}, "single": false, "singleNote": "", "badge": ""}, {"name": "The Amazing Adventures of Spider-Man", "desc": "Put on 3D glasses and join Spider-Man as you soar above city streets, scale skyscrapers, and battle sinister villains at every turn.", "tldr": "3D Spider-Man simulator", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 10.0, "hi": null, "label": "", "comment": "Freakin love this ride, I remember it being really exciting"}, "keywords": ["3D", "Dark ride", "Motion", "Marvel", "Indoors", "Classic"], "wait": {"lo": 30, "hi": 60}, "single": true, "singleNote": "", "badge": ""}, {"name": "The Incredible Hulk Coaster", "desc": "A gamma-charged launch coaster that races up to 67 mph and turns your world upside down.", "tldr": "Classic intense launch coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 10.0, "hi": null, "label": "", "comment": "This is one of my favorite coasters ever, the beginning has a really fun powered launch section where it shoots you up the first hill at like 40 MPH. Also apparently it's been refurbished with an OST by the lead singer of Fall Out Boy"}, "keywords": ["Roller coaster", "Launch", "Inversions", "Marvel", "Outdoors", "Intense"], "wait": {"lo": 25, "hi": 60}, "single": true, "singleNote": "", "badge": ""}, {"name": "Dudley Do-Right's Ripsaw Falls", "desc": "Hop in a log for an incredibly steep plunge down Ripsaw Falls, and find out whether you'll stay dry at the watery end.", "tldr": "Log flume with a big drop", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "Fun if you’re a log flume fan, and it has a cute story"}, "keywords": ["Water ride", "Log flume", "Wet", "Toon Lagoon", "Outdoors", "Funny"], "wait": {"lo": 25, "hi": 50}, "single": true, "singleNote": "", "badge": ""}, {"name": "Harry Potter and the Forbidden Journey", "desc": "Make your way through Hogwarts School of Witchcraft and Wizardry, then soar above the castle grounds with Harry Potter and his friends on a thrilling adventure.", "tldr": "Flying dark ride through Hogwarts", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Motion", "Harry Potter", "Immersive", "Indoors", "Popular", "Classic"], "wait": {"lo": 25, "hi": 50}, "single": true, "singleNote": "", "badge": ""}, {"name": "Skull Island: Reign of Kong", "desc": "An expedition into Kong's primal realm, where ancient predators and vicious monsters battle before your eyes on a multi-sensory, multi-dimensional ride.", "tldr": "Immersive ride to meet Kong", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Trackless", "King Kong", "Immersive", "Mixed indoor/outdoor"], "wait": {"lo": 25, "hi": 55}, "single": true, "singleNote": "", "badge": ""}, {"name": "Ollivanders Experience in Hogsmeade (experience, not a ride)", "desc": "This is a brief show, not a ride. Meet the wandkeeper at Ollivanders, makers of fine wands since 382 B.C., and watch a wand choose its wizard, possibly you.", "tldr": "Wand-choosing show", "extras": [], "thrill": {"label": "n/a"}, "thrillNote": "", "sean": {"lo": 8.0, "hi": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Wand shop", "Harry Potter", "Interactive", "Show", "Indoors"], "wait": {"lo": 15, "hi": 30}, "single": false, "singleNote": "", "badge": ""}, {"name": "Doctor Doom's Fearfall", "desc": "Doctor Doom is testing a machine that sucks the fear out of people, planning to use it as a weapon against the Fantastic Four.", "tldr": "Drop tower", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "It’s a drop tower. Fun, but these make me nauseous personally"}, "keywords": ["Drop tower", "Marvel", "Outdoors", "Intense"], "wait": {"lo": 15, "hi": 45}, "single": true, "singleNote": "", "badge": ""}, {"name": "The High in the Sky Seuss Trolley Train Ride!", "desc": "A slow-moving trolley takes you on a gentle journey high above the colorful rides and attractions of Seuss Landing.", "tldr": "Gentle elevated trolley", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kids", "Dr. Seuss", "Elevated", "Chill", "Outdoors"], "wait": {"lo": 15, "hi": 35}, "single": false, "singleNote": "", "badge": ""}, {"name": "One Fish, Two Fish, Red Fish, Blue Fish", "desc": "Dr. Seuss's children's book comes to life in a ride that kids and parents both love.", "tldr": "Seuss ride for kids", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Kids", "Spinning", "Dr. Seuss", "Interactive", "Outdoors", "Wet"], "wait": {"lo": 10, "hi": 30}, "single": false, "singleNote": "", "badge": ""}, {"name": "Popeye & Bluto's Bilge-Rat Barges", "desc": "Splash and churn your way through a variety of amusing scenes aboard a river raft.", "tldr": "River raft through goofy scenes", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 8.0, "hi": null, "label": "", "comment": "I love river rafts, but this might be miserable if it’s still cold in January"}, "keywords": ["Water ride", "Wet", "Toon Lagoon", "Outdoors", "Classic"], "wait": {"lo": 10, "hi": 20}, "single": false, "singleNote": "", "badge": ""}, {"name": "The Cat in The Hat", "desc": "Ride your couch through the pages of Dr. Seuss's best-loved children's book, with the Cat in the Hat as your guide.", "tldr": "Gentle Seuss dark ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"lo": 7.0, "hi": null, "label": "", "comment": "This one also made me motion sick as a kid? Maybe I’m just a baby"}, "keywords": ["Dark ride", "Dr. Seuss", "Kids", "Indoors", "Gentle"], "wait": {"lo": 10, "hi": 25}, "single": false, "singleNote": "", "badge": ""}, {"name": "Caro-Seuss-el", "desc": "A one-of-a-kind carousel filled with fun and unusual creatures from Dr. Seuss's imagination.", "tldr": "Seuss carousel", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Carousel", "Dr. Seuss", "Kids", "Gentle", "Outdoors"], "wait": {"lo": 5, "hi": 10}, "single": false, "singleNote": "", "badge": ""}, {"name": "Jurassic Park River Adventure", "desc": "You're gliding along in your raft, and then you're face-to-face with a giant T. rex, with nowhere to turn.", "tldr": "Raft ride with a T. rex scare", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"lo": 9.0, "hi": null, "label": "", "comment": ""}, "kassie": {"lo": 10.0, "hi": null, "label": "", "comment": "So classic, cool animatronics and a big drop"}, "keywords": ["Water ride", "Big drop", "Wet", "Animatronics", "Jurassic Park", "Classic"], "wait": {"lo": 5, "hi": 15}, "single": true, "singleNote": "", "badge": ""}, {"name": "Storm Force Accelatron", "desc": "Spin the wheel as fast as you can to help Storm generate enough thunder and lightning to blast Magneto into oblivion.", "tldr": "Spinner you control", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Spinning", "Marvel", "Outdoors", "Teacups"], "wait": {"lo": 5, "hi": 10}, "single": false, "singleNote": "", "badge": ""}], "shows": [{"name": "Oh! The Stories You'll Hear!", "desc": "A wacky story time of singing and dancing featuring familiar Dr. Seuss characters, in Seuss Landing.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dr. Seuss", "Characters", "Kids", "Seuss Landing"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Frog Choir", "desc": "A short singing show by Hogwarts students holding giant singing frogs, in Hogsmeade.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Harry Potter", "Music", "Short", "Hogsmeade"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Triwizard Spirit Rally", "desc": "Martial arts and dancing demonstrations in Hogsmeade.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Harry Potter", "Dance", "Outdoors", "Hogsmeade"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Hogwarts Always", "desc": "A nighttime show on Hogwarts castle that takes you through a school year with music and wizardry, on select nights.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Harry Potter", "Nighttime", "Projection", "Hogsmeade"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Dark Arts at Hogwarts Castle", "desc": "A limited-time seasonal show, shown on select dates from September to early November, where the dark side of magic descends on Hogsmeade.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Harry Potter", "Seasonal", "Nighttime", "Hogsmeade"], "wait": null, "single": false, "singleNote": "", "badge": ""}], "meets": ["Meet Marvel Super Heroes: Spider-Man, Captain America, Cyclops, Wolverine, Storm, and Rogue (Marvel Super Hero Island)", "Meet Marvel Villains: Doctor Doom and the Green Goblin (Marvel Super Hero Island)", "Meet Dr. Seuss characters: the Cat in the Hat, the Lorax, Sam I Am, Thing One and Thing Two, and the Grinch (Seuss Landing)", "Meet Blue the Velociraptor (Raptor Encounter, Jurassic Park)", "Meet Popeye and Olive Oyl (Toon Lagoon)", "Meet Betty Boop (Toon Lagoon)", "Meet the Hogwarts Express Conductor (Hogsmeade)", "Meet students of Beauxbatons and Durmstrang (Hogsmeade, after the Triwizard Spirit Rally)"], "food": [], "top5": {"Sean": ["Jurassic Park River Adventure", "Forbidden Journey"], "Kassie": ["Hulk Coaster", "Spiderman", "Jurassic Park River Adventure", "Dudley Do-Right’s Ripsaw Falls"]}, "closed": ["Popeye & Bluto’s Bilge-Rat Barges: closed Jan 4 – Feb 2, 2027 (covers Jan 20 and 21)", "Harry Potter and the Forbidden Journey: closed Feb 8 – 19, 2027"], "hours": ["Jan 20 and 21, 2027: not yet posted by Universal as of Nov 19, 2026. For reference, Jan 21, 2026 was 9 AM–7 PM"], "misc": []}, {"key": "epic", "sheet": "Universal Studios (Epic Universe)", "intro": [[1, "Universal’s newest park, with five themed worlds (Super Nintendo World, Ministry of Magic, Isle of Berk, Dark Universe, Celestial Park). Best for Nintendo, Harry Potter, and How to Train Your Dragon fans, but with relatively few rides the lines run long"], [2, "Neither of us have been here, it’s BRAND new"], [1, "Super brief history: opened May 22, 2025 as Universal Orlando’s third theme park"]], "rides": [{"name": "Mine-Cart Madness (Super Nintendo World)", "desc": "Careen through the jungle and help Donkey Kong protect the Golden Banana on this thrilling family coaster.", "tldr": "Donkey Kong family coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Donkey Kong", "Nintendo", "Popular", "Immersive"], "wait": {"lo": 100, "hi": 125}, "single": true, "singleNote": "", "badge": ""}, {"name": "Harry Potter and the Battle at the Ministry", "desc": "Begin in Paris, travel by Métro-Floo to the British Ministry of Magic where Dolores Umbridge is about to stand trial, and join Harry in an epic battle.", "tldr": "Harry Potter trackless dark ride", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Trackless", "Harry Potter", "Immersive", "Ministry of Magic", "Indoors"], "wait": {"lo": 90, "hi": 120}, "single": true, "singleNote": "", "badge": ""}, {"name": "Mario Kart: Bowser's Challenge", "desc": "Ride through iconic courses, throw shells, and collect digital coins to beat Team Bowser.", "tldr": "Augmented-reality kart race", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Interactive", "AR", "Nintendo", "Dark ride", "Super Nintendo World", "Popular"], "wait": {"lo": 55, "hi": 95}, "single": true, "singleNote": "", "badge": ""}, {"name": "Curse of the Werewolf", "desc": "Tear through the dark forest at 37 mph for more than two minutes, racing through a foreboding shed as mysterious figures claw close.", "tldr": "Spinning thrill coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Family coaster", "Spooky", "Dark Universe", "Indoors/Outdoors"], "wait": {"lo": 30, "hi": 50}, "single": true, "singleNote": "", "badge": ""}, {"name": "Hiccup's Wing Gliders", "desc": "Hiccup invites new Vikings aboard his latest glider contraption, a winged machine that launches riders into the sky for a dragon's-eye view of Berk at up to 45 mph.", "tldr": "Family dragon coaster", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Family coaster", "Isle of Berk", "How to Train Your Dragon", "Outdoors"], "wait": {"lo": 30, "hi": 45}, "single": false, "singleNote": "", "badge": ""}, {"name": "Dragon Racer's Rally", "desc": "Practice aerobatic maneuvers and high-speed barrel rolls on two Viking-made dragon-riding trainers that rise up to 67 feet.", "tldr": "Spinning dragon flyer", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Spinning", "Isle of Berk", "Kids", "Outdoors"], "wait": {"lo": 25, "hi": 40}, "single": false, "singleNote": "", "badge": ""}, {"name": "Yoshi's Adventure", "desc": "Join the Yoshis and search for glowing eggs as you travel through Mushroom Kingdom landscapes on an enchanting, family-friendly ride.", "tldr": "Gentle Mario ride", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Gentle", "Nintendo", "Kids", "Super Nintendo World", "Outdoors/Indoors"], "wait": {"lo": 20, "hi": 40}, "single": false, "singleNote": "", "badge": ""}, {"name": "Stardust Racers", "desc": "Share a race across the cosmos on a breathtaking dual-launch coaster reaching up to 62 mph.", "tldr": "Dueling launch coaster", "extras": [], "thrill": {"min": 4, "max": 4}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Roller coaster", "Dueling", "Launch", "Celestial Park", "Thrills", "Outdoors"], "wait": {"lo": 20, "hi": 35}, "single": true, "singleNote": "", "badge": ""}, {"name": "Fyre Drill", "desc": "Created by Viking twins Ruffnut and Tuffnut: board a ship and blast water cannons at flame-like targets, and every other boat, to out-soak the other Vikings.", "tldr": "Interactive water-battle boats", "extras": [], "thrill": {"min": 2, "max": 2}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Interactive", "Water", "Isle of Berk", "Outdoors", "Wet"], "wait": {"lo": 15, "hi": 35}, "single": false, "singleNote": "", "badge": ""}, {"name": "Monsters Unchained: The Frankenstein Experiment", "desc": "On a motion-simulation dark ride, a demonstration by Dr. Victoria Frankenstein goes awry and unleashes a horde of enraged monsters.", "tldr": "Monster dark ride", "extras": [], "thrill": {"min": 3, "max": 3}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Dark ride", "Spooky", "Dark Universe", "Indoors", "Immersive"], "wait": {"lo": 15, "hi": 30}, "single": true, "singleNote": "", "badge": ""}, {"name": "Constellation Carousel", "desc": "Ride celestial creatures such as lions, dragons, and peacocks on carriages that turn 360 degrees while lifting riders up to 6 feet.", "tldr": "Celestial carousel", "extras": [], "thrill": {"min": 1, "max": 1}, "thrillNote": "", "sean": {"v": null, "label": "", "comment": ""}, "kassie": {"v": null, "label": "", "comment": ""}, "keywords": ["Carousel", "Celestial Park", "Gentle", "Outdoors"], "wait": {"lo": 15, "hi": 30}, "single": false, "singleNote": "", "badge": ""}], "shows": [{"name": "Le Cirque Arcanus", "desc": "A magical circus-style show in the Ministry of Magic world.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": ""}, "kassie": {"v": null, "unrated": true, "label": "", "comment": ""}, "keywords": ["Harry Potter", "Circus", "Indoors", "Ministry of Magic"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "The Untrainable Dragon", "desc": "A show in How to Train Your Dragon - Isle of Berk with Hiccup, Toothless, Gobber, and Astrid, and life-size dragons and musical numbers.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": ""}, "kassie": {"v": null, "unrated": true, "label": "", "comment": ""}, "keywords": ["Dragons", "Musical", "Indoors", "Isle of Berk"], "wait": null, "single": false, "singleNote": "", "badge": ""}, {"name": "Darkmoor Monster Makeup Experience", "desc": "An interactive experience in Dark Universe where guests get monster makeup.", "tldr": "", "extras": [], "thrill": null, "thrillNote": "", "sean": {"v": null, "unrated": true, "label": "", "comment": ""}, "kassie": {"v": null, "unrated": true, "label": "", "comment": ""}, "keywords": ["Interactive", "Makeup", "Dark Universe", "Spooky"], "wait": null, "single": false, "singleNote": "", "badge": ""}], "meets": ["Meet Toothless and friends (Haddock Paddock, Isle of Berk)", "Meet roaming Vikings: Astrid and Stormfly, Ruffnut and Tuffnut, Gobber, and the Night Lights (Isle of Berk)", "Meet roaming wizards and witches: Aurors, exchange students from Hogwarts, Beauxbatons, and Ilvermorny, and wandmaker Cosme Acajor (Wizarding Paris, Ministry of Magic)", "Meet Frankenstein's Monster and the Bride of Frankenstein (Dark Universe)", "Meet roaming Darkmoor residents: the Invisible Man and Ygor (Dark Universe)", "Meet Mario and Luigi (Super Nintendo World)", "Meet Princess Peach (Super Nintendo World)", "Meet Toad (Super Nintendo World)", "Meet Donkey Kong (Super Nintendo World)"], "food": [], "top5": {"Sean": ["Never been"], "Kassie": ["Never been"]}, "closed": ["Fyre Drill: closed Jan 25 – Feb 4, 2027"], "hours": ["Jan 20 and 21, 2027: not yet posted by Universal as of Nov 19, 2026. For reference, Jan 21, 2026 was 10 AM–9 PM"], "misc": []}]}</script>
+<script>
+(function(){
+var DATA=JSON.parse(document.getElementById('data').textContent);
+var META={
+ mk:{name:'Magic Kingdom',short:'Magic Kingdom',c:'var(--mk)',group:'Disney'},
+ epcot:{name:'EPCOT',short:'EPCOT',c:'var(--epcot)',group:'Disney'},
+ usf:{name:'Universal Studios Florida',short:'Universal Studios Florida',c:'var(--usf)',group:'Universal Studios'},
+ ioa:{name:'Universal Studios: Islands of Adventure',short:'Islands of Adventure',c:'var(--ioa)',group:'Universal Studios'},
+ epic:{name:'Universal Studios: Epic Universe',short:'Epic Universe',c:'var(--epic)',group:'Universal Studios'}
+};
+var SCALE=140;
+var ORDER=['mk','epcot','usf','ioa','epic'];
+var PARK={}; DATA.parks.forEach(function(p){PARK[p.key]=p});
+var FIRE='\uD83D\uDD25';
+
+function T(s){
+  if(s==null) return '';
+  s=String(s).replace(/(\d)"/g,'$1\u0001');
+  s=s.replace(/(^|[\s(\[\u2014\u2013])"/g,'$1\u201C').replace(/"/g,'\u201D');
+  s=s.replace(/(^|[\s(\[])'(?=\w)/g,function(m,a){return a+'\u2019'}).replace(/'/g,'\u2019');
+  return s.replace(/\u0001/g,'"');
+}
+function h(tag,attrs){
+  var e=document.createElement(tag);
+  if(attrs) for(var k in attrs){
+    var v=attrs[k];
+    if(v===false||v==null) continue;
+    if(k==='class') e.className=v;
+    else if(k==='text') e.textContent=T(v);
+    else if(k==='raw') e.textContent=v;
+    else if(k.indexOf('on')===0) e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v);
+  }
+  for(var i=2;i<arguments.length;i++){
+    var c=arguments[i];
+    if(c==null||c===false) continue;
+    if(Array.isArray(c)) c.forEach(function(x){if(x) e.appendChild(x)});
+    else if(typeof c==='string') e.appendChild(document.createTextNode(T(c)));
+    else e.appendChild(c);
+  }
+  return e;
+}
+function clear(e){while(e.firstChild) e.removeChild(e.firstChild)}
+function avg(a){return a? (a.lo+(a.hi!=null?a.hi:a.lo))/2 : null}
+function rangeText(w){return (w.lo===w.hi?w.lo:w.lo+'\u2013'+w.hi)+' min'}
+
+/* thrill: always five flame slots plus one label, same format everywhere */
+function flames(th){
+  var min=null,max=null,label;
+  if(th&&th.min!=null){min=th.min;max=th.max;label=min===max?'Thrill '+min+' of 5':'Thrill '+min+' to '+max+' of 5';}
+  else if(th&&th.label&&/n\/a/i.test(th.label)) label='Not a ride';
+  else label='Not rated yet';
+  var box=h('div',{class:'thrill',role:'img','aria-label':label});
+  var row=h('span',{class:'fls','aria-hidden':'true'});
+  for(var i=1;i<=5;i++){
+    var s=h('span',{raw:FIRE});
+    if(min==null||i>max) s.className='off'; else if(i>min) s.className='mid';
+    row.appendChild(s);
+  }
+  box.appendChild(row);
+  box.appendChild(h('small',{text:label}));
+  return box;
+}
+/* wait bar: one color, one shared 0-140 min scale, segment = the average range */
+function waitBar(w){
+  var tr=h('div',{class:'track','aria-hidden':'true'});
+  if(w){
+    var wid=Math.max((w.hi-w.lo)/SCALE*100,1.4);
+    tr.appendChild(h('div',{class:'seg',style:'left:'+(w.lo/SCALE*100)+'%;width:'+wid+'%'}));
+  }
+  [30,60,90,120].forEach(function(t){tr.appendChild(h('div',{class:'tick',style:'left:'+(t/SCALE*100)+'%'}))});
+  return tr;
+}
+function waitRow(r){
+  if(!r.wait) return h('div',{class:'waitrow'},h('div',{class:'waitlabel'},h('b',{text:'No wait data'}),h('span',{text:'not tracked'})),h('div',{class:'nowait',text:'This one has no posted wait time.'}));
+  return h('div',{class:'waitrow'},
+    h('div',{class:'waitlabel'},h('b',{raw:rangeText(r.wait)}),h('span',{text:'on average'})),
+    waitBar(r.wait));
+}
+function scoreText(v){
+  var a=v.lo,b=v.hi;
+  var f=function(x){return (x%1===0)?String(x):x.toFixed(1)};
+  return b!=null? f(a)+'\u2013'+f(b) : f(a);
+}
+function voice(who,v){
+  var cls=who==='Sean'?'sean':'kas';
+  var box=h('div',{class:'voice '+cls});
+  var head=h('div',{class:'vhead'},h('span',{class:'vname',text:who}));
+  if(v && v.lo!=null){
+    head.appendChild(h('span',{class:'score'},h('span',{raw:scoreText(v)}),h('small',{raw:' /10'})));
+  } else {
+    head.appendChild(h('span',{class:'vlabel',text:(v&&v.label)?v.label:(v&&v.unrated?'Not rated yet':'No rating yet')}));
+  }
+  box.appendChild(head);
+  if(v && v.lo!=null && v.label) box.appendChild(h('div',{class:'vlabel',text:v.label}));
+  if(v && v.comment) box.appendChild(h('div',{class:'vtext',text:v.comment}));
+  return box;
+}
+function hasVoice(r){
+  function ok(v){return v && (v.lo!=null || v.comment || v.label)}
+  return ok(r.sean)||ok(r.kassie);
+}
+function kwRow(list){
+  if(!list||!list.length) return null;
+  return h('div',{class:'kws'},list.map(function(k){return h('span',{class:'kw',text:k})}));
+}
+function rideCard(r,pk){
+  var m=META[pk.key];
+  var badges=[];
+  if(r.badge) badges.push(h('span',{class:'badge new',text:r.badge}));
+  if(r.single) badges.push(h('span',{class:'badge sr',text:'Single rider line'}));
+  if(r.singleNote) badges.push(h('span',{class:'badge warn',text:'Single rider reported closed in Oct 2026'}));
+  var card=h('article',{class:'rc',style:'--c:'+m.c});
+  card.appendChild(h('div',{class:'rc-top'},
+    h('div',null,h('h3',{text:r.name}),badges.length?h('div',{class:'badges'},badges):null),
+    flames(r.thrill)));
+  if(r.tldr) card.appendChild(h('div',{class:'tldr',text:r.tldr}));
+  if(r.desc) card.appendChild(h('p',{class:'desc',text:r.desc}));
+  card.appendChild(waitRow(r));
+  if(r.thrillNote) card.appendChild(h('p',{class:'thnote',text:'Thrill note: '+r.thrillNote}));
+  card.appendChild(h('div',{class:'voices'},voice('Sean',r.sean),voice('Kassie',r.kassie)));
+  card.appendChild(kwRow(r.keywords));
+  return card;
+}
+function showCard(r,pk){
+  var m=META[pk.key];
+  var c=h('article',{class:'sc',style:'--c:'+m.c});
+  c.appendChild(h('h3',{text:r.name}));
+  if(r.desc) c.appendChild(h('p',{class:'desc',text:r.desc}));
+  if(hasVoice(r)) c.appendChild(h('div',{class:'voices'},voice('Sean',r.sean),voice('Kassie',r.kassie)));
+  c.appendChild(kwRow(r.keywords));
+  return c;
+}
+
+var ST={}; ORDER.forEach(function(k){ST[k]={tab:'rides',q:'',th:[],wait:'',sr:false,ind:false,out:false,sort:'doc'}});
+var CMP={park:'all',key:'name',dir:1};
+
+/* navigation: tabs on wide screens, a labeled Menu button on phones */
+function navItems(){
+  return [['overview','Overview',null,null]].concat(ORDER.map(function(k){return [k,META[k].short,META[k].c,META[k].group]})).concat([['compare','Compare all rides',null,null]]);
+}
+function curLabel(cur){
+  if(cur==='overview') return 'Overview';
+  if(cur==='compare') return 'Compare all rides';
+  return META[cur].name;
+}
+function setTabs(cur){
+  var nav=document.getElementById('tabs'); clear(nav);
+  var lastG=null;
+  navItems().forEach(function(it){
+    if(it[3]&&it[3]!==lastG){ nav.appendChild(h('span',{class:'grp',text:it[3]+':'})); }
+    lastG=it[3];
+    var a=h('a',{class:'tab',href:'#'+it[0],'aria-current':it[0]===cur?'page':false});
+    if(it[2]) a.appendChild(h('span',{class:'dot',style:'--c:'+it[2]}));
+    a.appendChild(document.createTextNode(T(it[1])));
+    nav.appendChild(a);
+  });
+  var act=nav.querySelector('[aria-current]'); if(act&&act.scrollIntoView) { try{ act.scrollIntoView({inline:'center',block:'nearest'}) }catch(e){} }
+  document.getElementById('here').textContent=curLabel(cur);
+  var panel=document.getElementById('menupanel'); clear(panel);
+  var g=null;
+  navItems().forEach(function(it){
+    if(it[3]&&it[3]!==g){ panel.appendChild(h('h4',{text:it[3]})); }
+    g=it[3];
+    var a=h('a',{href:'#'+it[0],'aria-current':it[0]===cur?'page':false});
+    if(it[2]) a.appendChild(h('span',{class:'dot',style:'--c:'+it[2]}));
+    a.appendChild(document.createTextNode(T(it[0]==='mk'||it[0]==='epcot'||it[0]==='usf'||it[0]==='ioa'||it[0]==='epic'?META[it[0]].name:it[1])));
+    panel.appendChild(a);
+  });
+  panel.hidden=true; document.getElementById('menu').setAttribute('aria-expanded','false');
+}
+function stats(pk){
+  var n=pk.rides.length, big=pk.rides.filter(function(r){return r.thrill&&r.thrill.max>=4}).length;
+  return {n:n,big:big,shows:pk.shows.length};
+}
+function realPicks(pk,who){
+  var l=(pk.top5[who]||[]).filter(function(x){return !/never been|tbd/i.test(x)&&x.length<60});
+  return l.slice(0,3);
+}
+
+function parkCard(k,big){
+  var pk=PARK[k],m=META[k],s=stats(pk);
+  var lead=(pk.intro[0]||[0,''])[1];
+  var body=(k==='mk')?parkLines['Magic Kingdom']:(k==='epcot')?parkLines['EPCOT']:'';
+  var sp=realPicks(pk,'Sean'), kp=realPicks(pk,'Kassie');
+  var hours=(k==='mk'||k==='epcot')?'Jan 20 and 21: 9 AM to 9 PM':'Jan 20 and 21: hours not posted yet';
+  return h('a',{class:'pcard',href:'#'+k,style:'--c:'+m.c},
+    h('h3',{text:m.name}),
+    h('p',{class:'lead',text:lead}),
+    body?h('p',{style:'color:var(--muted);font-size:15.5px',text:body}):null,
+    h('div',{class:'stats'},
+      h('span',{text:s.n+' rides'}),h('span',{text:s.shows+' shows and other entertainment'}),
+      s.big?h('span',{text:s.big+' rated 4 or 5 flames'}):null),
+    (sp.length||kp.length)?h('div',{class:'picks'},
+      sp.length?h('div',null,h('b',{text:'Sean’s top picks: '}),document.createTextNode(T(sp.join(', ')))):null,
+      kp.length?h('div',null,h('b',{text:'Kassie’s top picks: '}),document.createTextNode(T(kp.join(', ')))):null):null,
+    h('div',{class:'hrs',text:hours}),
+    h('div',{class:'go'},h('span',{text:'See all '+s.n+' rides, ratings, and comments'})));
+}
+var parkLines={};
+
+function overview(){
+  var root=h('div');
+  var ov=DATA.overview;
+  ov.bullets.forEach(function(b){
+    if(b[0]===0){ var m=b[1].match(/^(Magic Kingdom|EPCOT|Universal):\s*(.*)$/s); if(m) parkLines[m[1]]=m[2].charAt(0).toUpperCase()+m[2].slice(1); }
+  });
+  var hero=h('section',{class:'hero'},h('div',{class:'wrap'},
+    h('h1',{text:DATA.title}),
+    h('p',{class:'sub',text:'We’re choosing between Magic Kingdom and EPCOT. Universal Studios has been suggested as a third option, but we don’t have approval to split the group yet, so it’s still a maybe.'}),
+    h('div',{class:'ctas'},
+      h('a',{class:'cta',href:'#mk',style:'--c:var(--mk)',text:'See Magic Kingdom rides'}),
+      h('a',{class:'cta',href:'#epcot',style:'--c:var(--epcot)',text:'See EPCOT rides'})),
+    h('p',{class:'uni-note'},'This page is the summary. Every ride, with Sean’s and Kassie’s ratings and comments, is on each park’s own page. Curious about Universal? ',h('a',{href:'#usf',text:'Universal Studios Florida'}),', ',h('a',{href:'#ioa',text:'Islands of Adventure'}),', and ',h('a',{href:'#epic',text:'Epic Universe'}),' are all in here too.'),
+    h('div',{class:'legend'},h('h3',{text:'How we rate thrill level',style:'font-size:17px;margin-bottom:6px'}),
+      ov.legend.map(function(row){return h('div',{class:'flame-row'},h('span',{class:'fl',raw:row[0]}),h('span',{text:row[1]}))}))
+  ));
+  root.appendChild(hero);
+  var notes=[];
+  ov.bullets.forEach(function(b){
+    var lvl=b[0],t=b[1];
+    if(lvl===0){
+      if(/^(Magic Kingdom|EPCOT|Universal):/.test(t)) return;
+      var mm=t.match(/^(Other Disney World parks)\s+[\u2013-]\s+(.*)$/s); var idx=t.indexOf(':');
+      var title=mm?mm[1]:(idx>0&&idx<40? t.slice(0,idx):''); var rest=mm?mm[2]:(idx>0&&idx<40? t.slice(idx+1).trim():t);
+      notes.push({title:title,text:rest,warn:/^Heads up/i.test(t),subs:[]});
+    } else if(notes.length){ notes[notes.length-1].subs.push(t); }
+  });
+  root.appendChild(h('section',{class:'section'},h('div',{class:'wrap'},h('h2',{text:'Before you dive in'}),
+    h('ul',{class:'note-list'},notes.map(function(n){
+      var li=h('li',{class:n.warn?'warn':''});
+      if(n.title) li.appendChild(h('b',{text:n.title+': '}));
+      li.appendChild(document.createTextNode(T(n.text)));
+      if(n.subs.length) li.appendChild(h('ul',null,n.subs.map(function(s){var i=s.indexOf(':');return h('li',null,i>0?h('b',{text:s.slice(0,i+1)+' '}):null,document.createTextNode(T(i>0?s.slice(i+1).trim():s)))})));
+      return li;
+    })))));
+  root.appendChild(h('section',{class:'section'},h('div',{class:'wrap'},
+    h('h2',{text:'The two main choices'}),
+    h('p',{class:'lede',text:'Open a park to see every ride and show with Sean’s and Kassie’s ratings, comments, and average wait times.'}),
+    h('div',{class:'parkgrid two'},parkCard('mk'),parkCard('epcot')))));
+  root.appendChild(h('section',{class:'section'},h('div',{class:'wrap'},
+    h('h2',{text:'If Universal Studios is approved'}),
+    h('p',{class:'lede',text:'Universal Studios has three separate theme parks in Orlando. Here are all three.'}),
+    h('div',{class:'parkgrid three'},parkCard('usf'),parkCard('ioa'),parkCard('epic')))));
+  return root;
+}
+
+function parkView(k){
+  var pk=PARK[k],m=META[k],S=ST[k];
+  var root=h('div',{style:'--c:'+m.c+';--accent:'+m.c});
+  var intro=pk.intro;
+  var blurb=intro.length?intro[0][1]:'';
+  var extra=intro.slice(1).map(function(x){return x[1]});
+  var uni=m.group==='Universal Studios';
+  var head=h('section',{class:'phead'},h('div',{class:'wrap'},h('h1',{text:m.name}),h('p',{text:blurb}),
+    extra.length?h('p',{class:'more',text:extra.join(' ')}):null,
+    uni?h('p',{class:'more',text:'One of three Universal Studios theme parks in Orlando, along with Universal Studios Florida, Islands of Adventure, and Epic Universe. Universal is still pending approval for our group.'}):null));
+  root.appendChild(head);
+  var wrap=h('div',{class:'wrap'});
+  var info=h('div',{class:'infogrid'+(pk.closed.length?' two':'')});
+  info.appendChild(h('div',{class:'info'},h('h3',{text:'Hours on Jan 20 and 21'}),h('ul',null,pk.hours.map(function(x){return h('li',{text:x})}))));
+  if(pk.closed.length) info.appendChild(h('div',{class:'info closed'},h('h3',{text:'Closures to know about'}),h('ul',null,pk.closed.map(function(x){return h('li',{text:x})}))));
+  wrap.appendChild(info);
+  var hasMeets=pk.meets.length>0, hasTop=Object.keys(pk.top5).some(function(w){return pk.top5[w].length});
+  var tabs=[['rides','Rides ('+pk.rides.length+')'],['shows','Shows and entertainment ('+pk.shows.length+')']];
+  if(hasMeets) tabs.push(['meets','Character meets']);
+  if(hasTop) tabs.push(['top','Top picks']);
+  var sub=h('div',{class:'subtabs',role:'group','aria-label':'Park sections'});
+  var body=h('div');
+  function draw(){
+    clear(sub);
+    tabs.forEach(function(t){sub.appendChild(h('button',{class:'stab','aria-pressed':S.tab===t[0]?'true':'false',onclick:function(){S.tab=t[0];draw()}},t[1]))});
+    clear(body);
+    if(S.tab==='rides') body.appendChild(ridesPanel(pk,S,draw));
+    else if(S.tab==='shows') body.appendChild(showsPanel(pk));
+    else if(S.tab==='meets') body.appendChild(h('div',{class:'section'},h('h2',{text:'Character meets'}),h('ul',{class:'meets'},pk.meets.map(function(x){return h('li',{text:x})}))));
+    else if(S.tab==='top') body.appendChild(topPanel(pk));
+  }
+  wrap.appendChild(sub); wrap.appendChild(body);
+  var ex=h('div',{class:'explore'},h('h2',{text:'Keep exploring'}),h('div',{class:'chips'},
+    ORDER.filter(function(o){return o!==k}).map(function(o){return h('a',{href:'#'+o,style:'--c:'+META[o].c},h('i'),META[o].name)}).concat([h('a',{href:'#compare',style:'--c:var(--muted)'},h('i'),'Compare all rides')])));
+  wrap.appendChild(ex);
+  root.appendChild(wrap);
+  draw();
+  return root;
+}
+function matchRide(r,S){
+  if(S.q){
+    var q=S.q.toLowerCase();
+    var hay=(r.name+' '+r.tldr+' '+r.desc+' '+r.keywords.join(' ')).toLowerCase();
+    if(hay.indexOf(q)<0) return false;
+  }
+  if(S.th.length){
+    if(!r.thrill||r.thrill.min==null) return false;
+    var ok=S.th.some(function(t){return t>=r.thrill.min&&t<=r.thrill.max});
+    if(!ok) return false;
+  }
+  if(S.wait){
+    var a=avg(r.wait); if(a==null) return false;
+    if(S.wait==='short'&&!(a<20)) return false;
+    if(S.wait==='med'&&!(a>=20&&a<45)) return false;
+    if(S.wait==='long'&&!(a>=45)) return false;
+  }
+  if(S.sr&&!r.single) return false;
+  var kw=r.keywords.join(' ').toLowerCase();
+  if(S.ind&&kw.indexOf('indoor')<0) return false;
+  if(S.out&&kw.indexOf('outdoor')<0) return false;
+  return true;
+}
+function sortRides(list,S){
+  var a=list.slice();
+  function sv(v){return v&&v.lo!=null?(v.lo+(v.hi!=null?v.hi:v.lo))/2:-1}
+  if(S.sort==='thrill') a.sort(function(x,y){return ((y.thrill&&y.thrill.max)||-1)-((x.thrill&&x.thrill.max)||-1)});
+  else if(S.sort==='wait') a.sort(function(x,y){var p=avg(x.wait),q=avg(y.wait);return (p==null?999:p)-(q==null?999:q)});
+  else if(S.sort==='sean') a.sort(function(x,y){return sv(y.sean)-sv(x.sean)});
+  else if(S.sort==='kassie') a.sort(function(x,y){return sv(y.kassie)-sv(x.kassie)});
+  return a;
+}
+function ridesPanel(pk,S,redrawTabs){
+  var wrap=h('div');
+  var list=h('div',{class:'cards'});
+  var count=h('span',{class:'count'});
+  function paint(){
+    clear(list);
+    var rs=sortRides(pk.rides.filter(function(r){return matchRide(r,S)}),S);
+    count.textContent='Showing '+rs.length+' of '+pk.rides.length;
+    if(!rs.length) list.appendChild(h('p',{class:'empty-state',text:'No rides match those filters. Clear a filter or two to see more.'}));
+    rs.forEach(function(r){list.appendChild(rideCard(r,pk))});
+  }
+  var search=h('input',{type:'search',placeholder:'Search rides or keywords','aria-label':'Search rides',value:S.q,oninput:function(e){S.q=e.target.value;paint()}});
+  var thr=h('span',null);
+  function thrChips(){
+    clear(thr);
+    for(var i=1;i<=5;i++)(function(i){
+      var on=S.th.indexOf(i)>=0;
+      thr.appendChild(h('button',{class:'chip','aria-pressed':on?'true':'false','aria-label':i+' flame'+(i>1?'s':''),onclick:function(){var ix=S.th.indexOf(i);if(ix>=0)S.th.splice(ix,1);else S.th.push(i);thrChips();paint()}},new Array(i+1).join(FIRE)));
+    })(i);
+  }
+  thrChips();
+  var waitSel=h('select',{'aria-label':'Wait time',onchange:function(e){S.wait=e.target.value;paint()}},
+    h('option',{value:'',raw:'Any wait'}),h('option',{value:'short',raw:'Short: under 20 min'}),h('option',{value:'med',raw:'Medium: 20 to 45 min'}),h('option',{value:'long',raw:'Long: 45+ min'}));
+  waitSel.value=S.wait;
+  var sortSel=h('select',{'aria-label':'Sort rides',onchange:function(e){S.sort=e.target.value;paint()}},
+    h('option',{value:'doc',raw:'Sort: as listed'}),h('option',{value:'thrill',raw:'Sort: most thrilling'}),h('option',{value:'wait',raw:'Sort: shortest wait'}),h('option',{value:'sean',raw:'Sort: Sean’s score'}),h('option',{value:'kassie',raw:'Sort: Kassie’s score'}));
+  sortSel.value=S.sort;
+  function tog(label,key){
+    return h('button',{class:'chip','aria-pressed':S[key]?'true':'false',onclick:function(e){S[key]=!S[key];e.currentTarget.setAttribute('aria-pressed',S[key]?'true':'false');paint()}},label);
+  }
+  var clearBtn=h('button',{class:'linkbtn',onclick:function(){S.q='';S.th=[];S.wait='';S.sr=false;S.ind=false;S.out=false;S.sort='doc';redrawTabs()}},'Clear filters');
+  var f=h('div',{class:'filters'},
+    h('div',{class:'frow'},search,waitSel,sortSel),
+    h('div',{class:'frow'},h('span',{class:'flab',text:'Thrill'}),thr,tog('Single rider','sr'),tog('Indoors','ind'),tog('Outdoors','out'),clearBtn,count));
+  wrap.appendChild(f);
+  wrap.appendChild(h('p',{class:'scalenote',text:'Wait bars all use the same 0 to 140 minute scale, so they’re directly comparable. Waits are averages, so busy evenings and holidays can run longer.'}));
+  wrap.appendChild(list);
+  paint();
+  return wrap;
+}
+function showsPanel(pk){
+  var w=h('div',{class:'section'});
+  w.appendChild(h('h2',{text:'Shows and entertainment'}));
+  var list=h('div',{class:'cards'});
+  pk.shows.forEach(function(s){list.appendChild(showCard(s,pk))});
+  w.appendChild(list); return w;
+}
+function topPanel(pk){
+  var w=h('div',{class:'section'});
+  w.appendChild(h('h2',{text:'Top picks'}));
+  var g=h('div',{class:'top2'});
+  Object.keys(pk.top5).forEach(function(who){
+    if(!pk.top5[who].length) return;
+    g.appendChild(h('div',{class:'toplist'},h('h3',{text:who+'’s picks'}),h('ol',null,pk.top5[who].map(function(x){return h('li',{text:x})}))));
+  });
+  w.appendChild(g); return w;
+}
+
+function allRides(){
+  var out=[];
+  ORDER.forEach(function(k){PARK[k].rides.forEach(function(r){out.push({r:r,k:k})})});
+  return out;
+}
+function compareView(){
+  var root=h('div',{class:'wrap wide'});
+  root.appendChild(h('section',{class:'section'},h('h2',{text:'Compare every ride'}),
+    h('p',{class:'scalenote',text:'Click a column heading to sort. Wait bars all use the same 0 to 140 minute scale.'})));
+  var chips=h('div',{class:'frow',style:'margin-bottom:14px'});
+  var tbl=h('div',{class:'tablewrap'});
+  function sv(v){return v&&v.lo!=null?(v.lo+(v.hi!=null?v.hi:v.lo))/2:-1}
+  function val(x,key){
+    var r=x.r;
+    if(key==='name') return r.name.toLowerCase();
+    if(key==='park') return ORDER.indexOf(x.k);
+    if(key==='thrill') return r.thrill&&r.thrill.max!=null?r.thrill.max:-1;
+    if(key==='sean') return sv(r.sean);
+    if(key==='kassie') return sv(r.kassie);
+    if(key==='wait'){var a=avg(r.wait);return a==null?-1:a}
+    if(key==='sr') return r.single?1:0;
+  }
+  function draw(){
+    clear(chips);
+    [['all','All parks']].concat(ORDER.map(function(k){return [k,META[k].name]})).forEach(function(p){
+      chips.appendChild(h('button',{class:'chip','aria-pressed':CMP.park===p[0]?'true':'false',onclick:function(){CMP.park=p[0];draw()}},p[1]));
+    });
+    var rows=allRides().filter(function(x){return CMP.park==='all'||x.k===CMP.park});
+    rows.sort(function(a,b){var p=val(a,CMP.key),q=val(b,CMP.key);return (p<q?-1:p>q?1:0)*CMP.dir});
+    var cols=[['name','Ride'],['park','Park'],['thrill','Thrill (of 5)'],['sean','Sean (of 10)'],['kassie','Kassie (of 10)'],['wait','Wait on average'],['sr','Single rider']];
+    var thead=h('tr',null,cols.map(function(c){
+      var on=CMP.key===c[0];
+      return h('th',{'aria-sort':on?(CMP.dir>0?'ascending':'descending'):'none'},h('button',{onclick:function(){if(CMP.key===c[0])CMP.dir*=-1;else{CMP.key=c[0];CMP.dir=(c[0]==='name'||c[0]==='park')?1:-1}draw()}},c[1],on?(CMP.dir>0?' \u25B2':' \u25BC'):''));
+    }));
+    var tbody=h('tbody',null,rows.map(function(x){
+      var r=x.r,m=META[x.k];
+      var th=r.thrill&&r.thrill.min!=null?(r.thrill.min===r.thrill.max?String(r.thrill.min):r.thrill.min+'\u2013'+r.thrill.max):'\u2013';
+      function sc(v){return v&&v.lo!=null?scoreText(v):'\u2013'}
+      var wt=r.wait?h('div',{class:'mini',style:'--c:'+m.c},h('div',{style:'font-size:13px;margin-bottom:3px',raw:rangeText(r.wait)}),waitBar(r.wait)):h('span',{class:'dim',text:'No data'});
+      return h('tr',null,
+        h('td',null,h('a',{href:'#'+x.k,text:r.name})),
+        h('td',null,h('span',{class:'pk',style:'--c:'+m.c},h('i'),m.name)),
+        h('td',{class:'num',raw:th}),h('td',{class:'num',raw:sc(r.sean)}),h('td',{class:'num',raw:sc(r.kassie)}),
+        h('td',null,wt),
+        h('td',{raw:r.single?'Yes':''}));
+    }));
+    clear(tbl);
+    tbl.appendChild(h('table',null,h('thead',null,thead),tbody));
+  }
+  root.appendChild(chips); root.appendChild(tbl);
+  draw();
+  return h('div',null,root);
+}
+
+function footer(){
+  var f=document.getElementById('foot'); clear(f);
+  f.appendChild(h('h3',{text:'How this was made'}));
+  DATA.overview.ai.forEach(function(t){f.appendChild(h('p',{text:t}))});
+  f.appendChild(h('p',{text:'Wait times are averages from queue-tracking sites. Hours and closures are as of Nov 19, 2026, so check the park apps before you go.'}));
+}
+
+function route(){
+  var k=(location.hash||'#overview').slice(1);
+  if(k!=='overview'&&k!=='compare'&&!PARK[k]) k='overview';
+  var app=document.getElementById('app'); clear(app);
+  if(k==='overview') app.appendChild(overview());
+  else if(k==='compare') app.appendChild(compareView());
+  else app.appendChild(parkView(k));
+  setTabs(k);
+  document.title=(k==='overview'?DATA.title:curLabel(k)+' | '+DATA.title);
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',route);
+document.getElementById('menu').addEventListener('click',function(){
+  var p=document.getElementById('menupanel'); p.hidden=!p.hidden; this.setAttribute('aria-expanded',p.hidden?'false':'true');
+});
+document.getElementById('mode').addEventListener('click',function(){
+  var r=document.documentElement,cur=r.getAttribute('data-theme');
+  var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme',dark?'light':'dark');
+});
+footer(); route();
+})();
+
+</script>
+</body>
+</html>
