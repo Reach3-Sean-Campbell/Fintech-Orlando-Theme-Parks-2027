@@ -219,6 +219,34 @@ button{font:inherit;color:inherit}
 .explore .chips{display:flex;flex-wrap:wrap;gap:10px}
 .explore a{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:10px 14px;font-weight:600;text-decoration:none}
 .explore a i{width:10px;height:10px;border-radius:50%;background:var(--c)}
+
+/* comments */
+.cm{margin-top:16px}
+.cm-toggle{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:14.5px}
+.cm-toggle.has{border-color:var(--c,var(--accent));color:var(--c,var(--accent))}
+.cm-toggle:hover{background:var(--soft)}
+.cm-panel{margin-top:12px;border-top:1px solid var(--line);padding-top:14px}
+.cm-panel[hidden]{display:none}
+.cm-list{display:grid;gap:10px;margin-bottom:14px}
+.cm-item{background:var(--soft);border-radius:12px;padding:10px 14px}
+.cm-item b{font-family:var(--display);font-size:15px}
+.cm-item time{color:var(--muted);font-size:13px;margin-left:8px}
+.cm-item p{margin-top:4px;white-space:pre-line;overflow-wrap:anywhere}
+.cm-empty{color:var(--muted);font-size:14.5px}
+.cm-form{display:grid;gap:8px}
+.cm-form input,.cm-form textarea{width:100%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 12px;font:inherit}
+.cm-form textarea{resize:vertical;min-height:84px}
+.cm-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cm-post{border:0;background:var(--c,var(--accent));color:#fff;border-radius:10px;padding:10px 18px;font-family:var(--display);font-weight:700;cursor:pointer}
+:root[data-theme="dark"] .cm-post,:root:not([data-theme="light"]) .cm-post{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .cm-post{color:#fff}}
+.cm-post[disabled]{opacity:.6;cursor:default}
+.cm-msg{font-size:14px;color:var(--muted)}
+.cm-msg.err{color:#C43A2B}
+.cm-note{font-size:12.5px;color:var(--muted)}
+.cm-jump{margin-top:14px;border:1.5px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:6px 14px;font-weight:600;cursor:pointer;font-size:14.5px}
+.pcomments{padding-top:34px}
+.pcomments h2{font-size:24px;margin-bottom:12px}
 .empty-state{padding:30px 0;color:var(--muted)}
 
 /* compare */
@@ -382,6 +410,7 @@ function rideCard(r,pk){
   if(r.thrillNote) card.appendChild(h('p',{class:'thnote',text:'Thrill note: '+r.thrillNote}));
   card.appendChild(h('div',{class:'voices'},voice('Sean',r.sean),voice('Kassie',r.kassie)));
   card.appendChild(kwRow(r.keywords));
+  card.appendChild(cmToggle(tid(pk.key,'ride',r.name),'What did you think of '+r.name+'?'));
   return card;
 }
 function showCard(r,pk){
@@ -391,7 +420,97 @@ function showCard(r,pk){
   if(r.desc) c.appendChild(h('p',{class:'desc',text:r.desc}));
   if(hasVoice(r)) c.appendChild(h('div',{class:'voices'},voice('Sean',r.sean),voice('Kassie',r.kassie)));
   c.appendChild(kwRow(r.keywords));
+  c.appendChild(cmToggle(tid(pk.key,'show',r.name),'What did you think of '+r.name+'?'));
   return c;
+}
+
+
+/* ---------- team comments (live, via a small hosted database) ---------- */
+var CM_CFG={url:'https://optrtuesooetxucvokyf.supabase.co',key:'sb_publishable_jlTwRtyM2sq0eXv9gpJotw_s8dMPNna'};
+var CM={on:!!(CM_CFG.url&&CM_CFG.key&&CM_CFG.url.indexOf('__')<0&&CM_CFG.key.indexOf('__')<0),items:[],by:{},ok:null,subs:[]};
+function slug(x){return String(x).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+function tid(k,type,name){return k+'|'+type+(name?'|'+slug(name):'')}
+function cmHeaders(extra){
+  var hd={apikey:CM_CFG.key};
+  if(/^eyJ/.test(CM_CFG.key)) hd.Authorization='Bearer '+CM_CFG.key;
+  for(var k in (extra||{})) hd[k]=extra[k];
+  return hd;
+}
+function cmIndex(){CM.by={};CM.items.forEach(function(c){(CM.by[c.target]=CM.by[c.target]||[]).push(c)})}
+function cmNotify(){CM.subs.forEach(function(f){try{f()}catch(e){}})}
+function cmLoad(){
+  if(!CM.on) return Promise.resolve();
+  return fetch(CM_CFG.url+'/rest/v1/comments?select=id,target,name,body,created_at&order=created_at.asc&limit=3000',{headers:cmHeaders()})
+    .then(function(r){if(!r.ok) throw new Error(r.status);return r.json()})
+    .then(function(rows){
+      var last=CM.items.length?CM.items[CM.items.length-1].id:null;
+      var nlast=rows.length?rows[rows.length-1].id:null;
+      var changed=CM.ok!==true||rows.length!==CM.items.length||last!==nlast;
+      CM.items=rows;CM.ok=true;cmIndex();
+      if(changed) cmNotify();
+    })
+    .catch(function(){var was=CM.ok;CM.ok=false;if(was!==false) cmNotify()});
+}
+function cmPost(target,name,body){
+  return fetch(CM_CFG.url+'/rest/v1/comments',{method:'POST',headers:cmHeaders({'Content-Type':'application/json',Prefer:'return=minimal'}),body:JSON.stringify({target:target,name:name||null,body:body})})
+    .then(function(r){if(!r.ok) throw new Error(r.status);return cmLoad()});
+}
+function cmName(){try{return localStorage.getItem('cmName')||''}catch(e){return ''}}
+function cmSaveName(n){try{localStorage.setItem('cmName',n)}catch(e){}}
+function ago(iso){
+  var t=new Date(iso).getTime(); if(isNaN(t)) return '';
+  var sec=Math.max(0,(Date.now()-t)/1000);
+  if(sec<60) return 'just now';
+  if(sec<3600) return Math.floor(sec/60)+' min ago';
+  if(sec<86400){var hr=Math.floor(sec/3600);return hr+' hour'+(hr>1?'s':'')+' ago'}
+  var dd=Math.floor(sec/86400); if(dd<7) return dd+' day'+(dd>1?'s':'')+' ago';
+  return new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric'});
+}
+function cmThread(target,placeholder){
+  var wrap=h('div',{class:'cm-thread'});
+  var list=h('div',{class:'cm-list','aria-live':'polite'});
+  var nameIn=h('input',{type:'text',maxlength:'40',placeholder:'Your name','aria-label':'Your name',value:cmName()});
+  var ta=h('textarea',{maxlength:'1000',rows:'3',placeholder:placeholder||'Add a comment','aria-label':'Your comment'});
+  var msg=h('div',{class:'cm-msg',role:'status'});
+  var btn=h('button',{class:'cm-post',type:'button',onclick:function(){
+    var body=ta.value.trim(), nm=nameIn.value.trim();
+    if(!body){msg.className='cm-msg err';msg.textContent=T('Write a comment first.');return}
+    btn.disabled=true;msg.className='cm-msg';msg.textContent=T('Posting…');
+    cmSaveName(nm);
+    cmPost(target,nm,body).then(function(){ta.value='';msg.textContent=T('Posted. Thanks!');btn.disabled=false;setTimeout(function(){if(msg.textContent==='Posted. Thanks!') msg.textContent=''},3000)})
+    .catch(function(){msg.className='cm-msg err';msg.textContent=T('Couldn’t post your comment. Check your connection and try again. Your text is still here.');btn.disabled=false});
+  }},'Post comment');
+  function render(){
+    clear(list);
+    var items=CM.by[target]||[];
+    if(!items.length){
+      list.appendChild(h('div',{class:'cm-empty',text:CM.ok===false?'Couldn’t load comments right now. Check your connection.':(CM.ok===null?'Loading comments…':'No comments yet. Be the first.')}));
+    }
+    items.forEach(function(c){
+      list.appendChild(h('div',{class:'cm-item'},
+        h('div',null,h('b',{raw:c.name||'Anonymous'}),h('time',{raw:ago(c.created_at)})),
+        h('p',{raw:c.body})));
+    });
+  }
+  CM.subs.push(render); render();
+  wrap.appendChild(list);
+  wrap.appendChild(h('div',{class:'cm-form'},nameIn,ta,h('div',{class:'cm-row'},btn,msg),h('div',{class:'cm-note',text:'Anyone with this link can read and post comments.'})));
+  return wrap;
+}
+function cmToggle(target,placeholder){
+  if(!CM.on) return null;
+  var box=h('div',{class:'cm'});
+  var btn=h('button',{class:'cm-toggle',type:'button','aria-expanded':'false'});
+  var panel=h('div',{class:'cm-panel',hidden:''});
+  var built=false;
+  function upd(){var n=(CM.by[target]||[]).length;btn.textContent=T(n?'Team comments ('+n+')':'Add a comment');btn.className='cm-toggle'+(n?' has':'')}
+  btn.addEventListener('click',function(){
+    if(!built){panel.appendChild(cmThread(target,placeholder));built=true}
+    panel.hidden=!panel.hidden;btn.setAttribute('aria-expanded',panel.hidden?'false':'true');
+  });
+  CM.subs.push(upd);upd();
+  box.appendChild(btn);box.appendChild(panel);
+  return box;
 }
 
 var ST={}; ORDER.forEach(function(k){ST[k]={tab:'rides',q:'',th:[],wait:'',sr:false,ind:false,out:false,sort:'doc'}});
@@ -469,7 +588,7 @@ function overview(){
   });
   var hero=h('section',{class:'hero'},h('div',{class:'wrap'},
     h('h1',{text:DATA.title}),
-    h('p',{class:'sub',text:'We’re likely choosing between Magic Kingdom and EPCOT. Universal Studios has been suggested as a third option, but we don’t have approval to split the group yet, so it’s still a maybe.'}),
+    h('p',{class:'sub',text:'We’re choosing between Magic Kingdom and EPCOT. Universal Studios has been suggested as a third option, but we don’t have approval to split the group yet, so it’s still a maybe.'}),
     h('div',{class:'ctas'},
       h('a',{class:'cta',href:'#mk',style:'--c:var(--mk)',text:'See Magic Kingdom rides'}),
       h('a',{class:'cta',href:'#epcot',style:'--c:var(--epcot)',text:'See EPCOT rides'})),
@@ -514,8 +633,15 @@ function parkView(k){
   var blurb=intro.length?intro[0][1]:'';
   var extra=intro.slice(1).map(function(x){return x[1]});
   var uni=m.group==='Universal Studios';
+  var jumpBtn=null;
+  if(CM.on){
+    jumpBtn=h('button',{class:'cm-jump',type:'button',onclick:function(){var e=document.getElementById('parkcomments');if(e) e.scrollIntoView({block:'start'})}});
+    var ju=function(){var n=(CM.by[tid(k,'park')]||[]).length;jumpBtn.textContent=T(n?'Comments about this park ('+n+')':'Leave a comment about this park')};
+    CM.subs.push(ju);ju();
+  }
   var head=h('section',{class:'phead'},h('div',{class:'wrap'},h('h1',{text:m.name}),h('p',{text:blurb}),
     extra.length?h('p',{class:'more',text:extra.join(' ')}):null,
+    CM.on?h('div',null,jumpBtn):null,
     uni?h('p',{class:'more',text:'One of three Universal Studios theme parks in Orlando, along with Universal Studios Florida, Islands of Adventure, and Epic Universe. Universal is still pending approval for our group.'}):null));
   root.appendChild(head);
   var wrap=h('div',{class:'wrap'});
@@ -553,7 +679,9 @@ function parkView(k){
     }
   }
   var more=h('div',{class:'morebox'});
-  wrap.appendChild(sub); wrap.appendChild(body); wrap.appendChild(more);
+  wrap.appendChild(sub); wrap.appendChild(body);
+  if(CM.on) wrap.appendChild(h('section',{class:'pcomments',id:'parkcomments'},h('h2',{text:'Team comments about '+m.name}),cmThread(tid(k,'park'),'Tips, questions, or thoughts on '+m.name)));
+  wrap.appendChild(more);
   var ex=h('div',{class:'explore'},h('h2',{text:'Keep exploring'}),h('div',{class:'chips'},
     ORDER.filter(function(o){return o!==k}).map(function(o){return h('a',{href:'#'+o,style:'--c:'+META[o].c},h('i'),META[o].name)}).concat([h('a',{href:'#compare',style:'--c:var(--muted)'},h('i'),'Compare all rides')])));
   wrap.appendChild(ex);
@@ -715,6 +843,7 @@ function footer(){
 function route(){
   var k=(location.hash||'#overview').slice(1);
   if(k!=='overview'&&k!=='compare'&&!PARK[k]) k='overview';
+  CM.subs=[];
   var app=document.getElementById('app'); clear(app);
   if(k==='overview') app.appendChild(overview());
   else if(k==='compare') app.appendChild(compareView());
@@ -732,7 +861,8 @@ document.getElementById('mode').addEventListener('click',function(){
   var dark=cur?cur==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
   r.setAttribute('data-theme',dark?'light':'dark');
 });
-footer(); route();
+footer(); route(); cmLoad();
+if(CM.on) setInterval(function(){if(!document.hidden) cmLoad()},20000);
 })();
 
 </script>
