@@ -205,6 +205,15 @@ button{font:inherit;color:inherit}
 .toplist li{margin:5px 0}
 .meets{columns:2 280px;column-gap:28px;padding-left:20px;margin:0}
 .meets li{break-inside:avoid;margin:5px 0}
+.morebox{margin-top:40px;background:var(--card);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:6px 6px 18px 18px;padding:22px 22px 24px}
+.morebox:empty{display:none}
+.morebox h2{font-size:24px;margin-bottom:6px}
+.morebox .lede{margin:0 0 14px}
+.morerow{display:flex;flex-wrap:wrap;gap:10px}
+.morebtn{border:0;background:var(--c);color:#fff;border-radius:12px;padding:13px 20px;font-family:var(--display);font-weight:700;font-size:17px;cursor:pointer}
+:root[data-theme="dark"] .morebtn,:root:not([data-theme="light"]) .morebtn{color:#0B1226}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .morebtn{color:#fff}}
+.morebtn:hover{filter:brightness(1.08)}
 .explore{margin-top:44px;border-top:1px solid var(--line);padding-top:24px}
 .explore h2{font-size:24px;margin-bottom:12px}
 .explore .chips{display:flex;flex-wrap:wrap;gap:10px}
@@ -514,10 +523,10 @@ function parkView(k){
   info.appendChild(h('div',{class:'info'},h('h3',{text:'Hours on Jan 20 and 21'}),h('ul',null,pk.hours.map(function(x){return h('li',{text:x})}))));
   if(pk.closed.length) info.appendChild(h('div',{class:'info closed'},h('h3',{text:'Closures to know about'}),h('ul',null,pk.closed.map(function(x){return h('li',{text:x})}))));
   wrap.appendChild(info);
-  var hasMeets=pk.meets.length>0, hasTop=Object.keys(pk.top5).some(function(w){return pk.top5[w].length});
+  var hasMeets=pk.meets.length>0, hasTop=Object.keys(pk.top5).some(function(w){return pk.top5[w].some(function(x){return !/never been/i.test(x)})});
   var tabs=[['rides','Rides ('+pk.rides.length+')'],['shows','Shows and entertainment ('+pk.shows.length+')']];
   if(hasMeets) tabs.push(['meets','Character meets']);
-  if(hasTop) tabs.push(['top','Top picks']);
+  if(hasTop) tabs.push(['top','Kassie & Sean’s Top Picks']);
   var sub=h('div',{class:'subtabs',role:'group','aria-label':'Park sections'});
   var body=h('div');
   function draw(){
@@ -528,8 +537,23 @@ function parkView(k){
     else if(S.tab==='shows') body.appendChild(showsPanel(pk));
     else if(S.tab==='meets') body.appendChild(h('div',{class:'section'},h('h2',{text:'Character meets'}),h('ul',{class:'meets'},pk.meets.map(function(x){return h('li',{text:x})}))));
     else if(S.tab==='top') body.appendChild(topPanel(pk));
+    clear(more);
+    var others=tabs.filter(function(t){return t[0]!==S.tab});
+    if(others.length){
+      more.appendChild(h('h2',{text:S.tab==='rides'?'More at '+m.name:'Keep going at '+m.name}));
+      more.appendChild(h('p',{class:'lede',text:S.tab==='rides'?'There’s more than rides. Jump to another section:':'Jump to another section:'}));
+      var row=h('div',{class:'morerow'});
+      others.forEach(function(t){
+        row.appendChild(h('button',{class:'morebtn',onclick:function(){
+          S.tab=t[0]; draw();
+          try{ sub.scrollIntoView({block:'start'}) }catch(e){ window.scrollTo(0,0) }
+        }},t[1]));
+      });
+      more.appendChild(row);
+    }
   }
-  wrap.appendChild(sub); wrap.appendChild(body);
+  var more=h('div',{class:'morebox'});
+  wrap.appendChild(sub); wrap.appendChild(body); wrap.appendChild(more);
   var ex=h('div',{class:'explore'},h('h2',{text:'Keep exploring'}),h('div',{class:'chips'},
     ORDER.filter(function(o){return o!==k}).map(function(o){return h('a',{href:'#'+o,style:'--c:'+META[o].c},h('i'),META[o].name)}).concat([h('a',{href:'#compare',style:'--c:var(--muted)'},h('i'),'Compare all rides')])));
   wrap.appendChild(ex);
@@ -618,7 +642,7 @@ function showsPanel(pk){
 }
 function topPanel(pk){
   var w=h('div',{class:'section'});
-  w.appendChild(h('h2',{text:'Top picks'}));
+  w.appendChild(h('h2',{text:'Kassie & Sean’s Top Picks'}));
   var g=h('div',{class:'top2'});
   Object.keys(pk.top5).forEach(function(who){
     if(!pk.top5[who].length) return;
