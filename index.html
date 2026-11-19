@@ -221,12 +221,13 @@ button{font:inherit;color:inherit}
 .explore a i{width:10px;height:10px;border-radius:50%;background:var(--c)}
 
 /* comments */
-.cm{margin-top:16px}
+.cm{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
 .cm-toggle{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:14.5px}
-.cm-toggle.has{border-color:var(--c,var(--accent));color:var(--c,var(--accent))}
 .cm-toggle:hover{background:var(--soft)}
-.cm-panel{margin-top:12px;border-top:1px solid var(--line);padding-top:14px}
-.cm-panel[hidden]{display:none}
+.cm-head{font-family:var(--display);font-size:16px;margin:0 0 8px}
+.cm-head[hidden],.cm-list[hidden],.cm-form[hidden]{display:none}
+.cm-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.cm-form{margin-top:12px}
 .cm-list{display:grid;gap:10px;margin-bottom:14px}
 .cm-item{background:var(--soft);border-radius:12px;padding:10px 14px}
 .cm-item b{font-family:var(--display);font-size:15px}
@@ -466,51 +467,64 @@ function ago(iso){
   var dd=Math.floor(sec/86400); if(dd<7) return dd+' day'+(dd>1?'s':'')+' ago';
   return new Date(iso).toLocaleDateString(undefined,{month:'short',day:'numeric'});
 }
-function cmThread(target,placeholder){
+function cmThread(target,placeholder,opts){
+  opts=opts||{};
   var wrap=h('div',{class:'cm-thread'});
+  var head=h('h4',{class:'cm-head'});
   var list=h('div',{class:'cm-list','aria-live':'polite'});
   var nameIn=h('input',{type:'text',maxlength:'40',placeholder:'Your name','aria-label':'Your name',value:cmName()});
   var ta=h('textarea',{maxlength:'1000',rows:'3',placeholder:placeholder||'Add a comment','aria-label':'Your comment'});
   var msg=h('div',{class:'cm-msg',role:'status'});
-  var btn=h('button',{class:'cm-post',type:'button',onclick:function(){
+  var open=false;
+  var addBtn=h('button',{class:'cm-toggle',type:'button','aria-expanded':'false'});
+  var form=h('div',{class:'cm-form',hidden:''});
+  function setOpen(v){
+    open=v; form.hidden=!v; addBtn.setAttribute('aria-expanded',v?'true':'false');
+    addBtn.textContent=T(v?'Cancel':'Add a comment');
+    if(v) setTimeout(function(){try{ta.focus()}catch(e){}},0);
+  }
+  var post=h('button',{class:'cm-post',type:'button',onclick:function(){
     var body=ta.value.trim(), nm=nameIn.value.trim();
     if(!body){msg.className='cm-msg err';msg.textContent=T('Write a comment first.');return}
-    btn.disabled=true;msg.className='cm-msg';msg.textContent=T('Posting…');
+    post.disabled=true;msg.className='cm-msg';msg.textContent=T('Posting…');
     cmSaveName(nm);
-    cmPost(target,nm,body).then(function(){ta.value='';msg.textContent=T('Posted. Thanks!');btn.disabled=false;setTimeout(function(){if(msg.textContent==='Posted. Thanks!') msg.textContent=''},3000)})
-    .catch(function(){msg.className='cm-msg err';msg.textContent=T('Couldn’t post your comment. Check your connection and try again. Your text is still here.');btn.disabled=false});
+    cmPost(target,nm,body).then(function(){
+      ta.value='';post.disabled=false;msg.textContent='';
+      setOpen(false);
+      thanks.textContent=T('Posted. Thanks!');
+      setTimeout(function(){thanks.textContent=''},3000);
+    }).catch(function(){msg.className='cm-msg err';msg.textContent=T('Couldn’t post your comment. Check your connection and try again. Your text is still here.');post.disabled=false});
   }},'Post comment');
+  var thanks=h('span',{class:'cm-msg',role:'status'});
+  form.appendChild(nameIn);form.appendChild(ta);
+  form.appendChild(h('div',{class:'cm-row'},post,msg));
+  form.appendChild(h('div',{class:'cm-note',text:'Anyone with this link can read and post comments.'}));
+  addBtn.addEventListener('click',function(){setOpen(!open)});
   function render(){
-    clear(list);
     var items=CM.by[target]||[];
+    clear(head); clear(list);
+    if(!opts.noHead && items.length) head.textContent=T('Team comments ('+items.length+')');
+    head.hidden=!!(opts.noHead||!items.length);
     if(!items.length){
-      list.appendChild(h('div',{class:'cm-empty',text:CM.ok===false?'Couldn’t load comments right now. Check your connection.':(CM.ok===null?'Loading comments…':'No comments yet. Be the first.')}));
+      if(CM.ok===false) list.appendChild(h('div',{class:'cm-empty',text:'Couldn’t load comments right now. Check your connection.'}));
+      else if(opts.empty&&CM.ok===true) list.appendChild(h('div',{class:'cm-empty',text:opts.empty}));
     }
     items.forEach(function(c){
       list.appendChild(h('div',{class:'cm-item'},
         h('div',null,h('b',{raw:c.name||'Anonymous'}),h('time',{raw:ago(c.created_at)})),
         h('p',{raw:c.body})));
     });
+    list.hidden=!list.firstChild;
   }
-  CM.subs.push(render); render();
-  wrap.appendChild(list);
-  wrap.appendChild(h('div',{class:'cm-form'},nameIn,ta,h('div',{class:'cm-row'},btn,msg),h('div',{class:'cm-note',text:'Anyone with this link can read and post comments.'})));
+  CM.subs.push(render); render(); setOpen(false);
+  wrap.appendChild(head);wrap.appendChild(list);
+  wrap.appendChild(h('div',{class:'cm-actions'},addBtn,thanks));
+  wrap.appendChild(form);
   return wrap;
 }
 function cmToggle(target,placeholder){
   if(!CM.on) return null;
-  var box=h('div',{class:'cm'});
-  var btn=h('button',{class:'cm-toggle',type:'button','aria-expanded':'false'});
-  var panel=h('div',{class:'cm-panel',hidden:''});
-  var built=false;
-  function upd(){var n=(CM.by[target]||[]).length;btn.textContent=T(n?'Team comments ('+n+')':'Add a comment');btn.className='cm-toggle'+(n?' has':'')}
-  btn.addEventListener('click',function(){
-    if(!built){panel.appendChild(cmThread(target,placeholder));built=true}
-    panel.hidden=!panel.hidden;btn.setAttribute('aria-expanded',panel.hidden?'false':'true');
-  });
-  CM.subs.push(upd);upd();
-  box.appendChild(btn);box.appendChild(panel);
-  return box;
+  return h('div',{class:'cm'},cmThread(target,placeholder));
 }
 
 var ST={}; ORDER.forEach(function(k){ST[k]={tab:'rides',q:'',th:[],wait:'',sr:false,ind:false,out:false,sort:'doc'}});
@@ -680,7 +694,7 @@ function parkView(k){
   }
   var more=h('div',{class:'morebox'});
   wrap.appendChild(sub); wrap.appendChild(body);
-  if(CM.on) wrap.appendChild(h('section',{class:'pcomments',id:'parkcomments'},h('h2',{text:'Team comments about '+m.name}),cmThread(tid(k,'park'),'Tips, questions, or thoughts on '+m.name)));
+  if(CM.on) wrap.appendChild(h('section',{class:'pcomments',id:'parkcomments'},h('h2',{text:'Team comments about '+m.name}),cmThread(tid(k,'park'),'Tips, questions, or thoughts on '+m.name,{noHead:true,empty:'No comments yet. Be the first.'})));
   wrap.appendChild(more);
   var ex=h('div',{class:'explore'},h('h2',{text:'Keep exploring'}),h('div',{class:'chips'},
     ORDER.filter(function(o){return o!==k}).map(function(o){return h('a',{href:'#'+o,style:'--c:'+META[o].c},h('i'),META[o].name)}).concat([h('a',{href:'#compare',style:'--c:var(--muted)'},h('i'),'Compare all rides')])));
