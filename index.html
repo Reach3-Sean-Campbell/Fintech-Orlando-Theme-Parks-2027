@@ -585,7 +585,7 @@ function stats(pk){
 }
 function realPicks(pk,who){
   var l=(pk.top5[who]||[]).filter(function(x){return !/never been|tbd/i.test(x)&&x.length<60});
-  return l.slice(0,3);
+  return l;
 }
 
 function parkCard(k,big){
